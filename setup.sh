@@ -67,7 +67,8 @@ print_status "GitHub username: $GITHUB_USERNAME"
 
 # Update the JavaScript file with the correct username
 if [ -f "script.js" ]; then
-    sed -i.bak "s/const GITHUB_USERNAME = 'arjith'/const GITHUB_USERNAME = '$GITHUB_USERNAME'/" script.js
+    ESCAPED_USERNAME=$(printf '%s\n' "$GITHUB_USERNAME" | sed 's/[\/&]/\\&/g')
+    sed -i.bak "s/const GITHUB_USERNAME = 'arjith'/const GITHUB_USERNAME = '$ESCAPED_USERNAME'/" script.js
     rm -f script.js.bak
     print_status "Updated GitHub username in script.js"
 fi
