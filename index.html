@@ -1,9 +1,345 @@
 <!DOCTYPE html>
-<html>
-<body>
-<h1>Hello World!</h1>
-<p>I'm hosted with GitHub Pages.</p>
-<p>This page is a work in progress.</p>
-<p>Please be patient</p>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arjith Retna Srikanth - Portfolio</title>
+    <meta name="description" content="Software Engineer at Microsoft - Portfolio showcasing projects and expertise">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#3b82f6',
+                        secondary: '#8b5cf6'
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="bg-gray-900 text-white min-h-screen">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/90 backdrop-blur-sm z-50 border-b border-gray-700">
+        <div class="max-w-6xl mx-auto px-4 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-xl font-bold">Arjith Retna Srikanth</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#about" class="hover:text-primary transition-colors">About</a>
+                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                    <a href="#skills" class="hover:text-primary transition-colors">Skills</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-900 via-purple-900 to-gray-900 relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
+        <div class="text-center px-4 relative z-10">
+            <h1 class="text-5xl md:text-7xl font-bold mb-6 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent animate-pulse">
+                Arjith Retna Srikanth
+            </h1>
+            <p class="text-xl md:text-2xl mb-4 text-gray-300">
+                Software Engineer at <span class="text-primary font-semibold">Microsoft</span>
+            </p>
+            <p class="text-lg mb-8 text-gray-400">
+                Building scalable solutions and innovative experiences
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" 
+                   class="bg-primary hover:bg-blue-700 px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105 shadow-lg">
+                    💼 LinkedIn
+                </a>
+                <a href="#projects" class="border border-white hover:bg-white hover:text-gray-900 px-8 py-3 rounded-full transition-all duration-300 transform hover:scale-105">
+                    🚀 View Projects
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 text-center">About Me</h2>
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+            <div class="space-y-6">
+                <p class="text-lg leading-relaxed">
+                    I'm a passionate Software Engineer at Microsoft, specializing in building scalable 
+                    applications and innovative solutions. With expertise in modern web technologies 
+                    and cloud platforms, I enjoy creating impactful software that makes a difference.
+                </p>
+                <p class="text-lg leading-relaxed">
+                    Based in Hyderabad, India, I'm always eager to take on new challenges and 
+                    contribute to cutting-edge projects in the tech industry.
+                </p>
+                <div class="flex flex-wrap gap-3">
+                    <span class="bg-primary/20 text-primary px-3 py-1 rounded-full text-sm">Azure Cloud</span>
+                    <span class="bg-green-500/20 text-green-400 px-3 py-1 rounded-full text-sm">Node.js</span>
+                    <span class="bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full text-sm">React</span>
+                    <span class="bg-yellow-500/20 text-yellow-400 px-3 py-1 rounded-full text-sm">.NET</span>
+                </div>
+            </div>
+            <div class="bg-gray-800 p-8 rounded-xl shadow-2xl">
+                <h3 class="text-2xl font-semibold mb-6 text-center">Quick Stats</h3>
+                <div class="space-y-4">
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">📍</span>
+                        <div>
+                            <div class="font-semibold">Location</div>
+                            <div class="text-gray-400">Hyderabad, India</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">💼</span>
+                        <div>
+                            <div class="font-semibold">Company</div>
+                            <div class="text-primary">Microsoft</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">🎯</span>
+                        <div>
+                            <div class="font-semibold">Role</div>
+                            <div class="text-gray-400">Software Engineer</div>
+                        </div>
+                    </div>
+                    <div class="flex items-center space-x-3">
+                        <span class="text-2xl">🚀</span>
+                        <div>
+                            <div class="font-semibold">Focus</div>
+                            <div class="text-gray-400">Web Development & Cloud</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="py-20 px-4 bg-gray-800/50">
+        <div class="max-w-6xl mx-auto">
+            <h2 class="text-4xl font-bold mb-12 text-center">Technical Skills</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <!-- Frontend -->
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 text-primary">Frontend</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>React.js</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>TypeScript</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Next.js</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Tailwind CSS</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Angular</li>
+                    </ul>
+                </div>
+                
+                <!-- Backend -->
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 text-secondary">Backend</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>.NET Core</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Node.js</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Python</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>REST APIs</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>GraphQL</li>
+                    </ul>
+                </div>
+                
+                <!-- Cloud & Tools -->
+                <div class="bg-gray-800 p-6 rounded-xl">
+                    <h3 class="text-xl font-semibold mb-4 text-yellow-400">Cloud & Tools</h3>
+                    <ul class="space-y-2">
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Microsoft Azure</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Docker</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Kubernetes</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>Git</li>
+                        <li class="flex items-center"><span class="text-green-400 mr-2">✓</span>CI/CD</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="py-20 px-4 max-w-6xl mx-auto">
+        <h2 class="text-4xl font-bold mb-12 text-center">Featured Projects</h2>
+        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Project 1 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-blue-500 to-purple-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">Cloud Platform</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Azure Analytics Platform</h3>
+                    <p class="text-gray-400 mb-4">A scalable analytics solution built with Azure services, processing millions of data points daily</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">Azure</span>
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">Node.js</span>
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded">React</span>
+                    </div>
+                    <div class="text-sm text-gray-500">🚀 Production • 2024</div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-green-500 to-teal-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">AI Dashboard</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">ML Insights Dashboard</h3>
+                    <p class="text-gray-400 mb-4">Machine learning insights dashboard providing real-time business intelligence and predictive analytics</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded">Python</span>
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">TensorFlow</span>
+                        <span class="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded">FastAPI</span>
+                    </div>
+                    <div class="text-sm text-gray-500">🔬 R&D • 2024</div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-red-500 to-pink-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">Mobile Backend</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">High-Scale API Backend</h3>
+                    <p class="text-gray-400 mb-4">High-performance API backend serving millions of mobile users with 99.9% uptime</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">.NET Core</span>
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">SQL Server</span>
+                        <span class="bg-red-500/20 text-red-400 text-xs px-2 py-1 rounded">Redis</span>
+                    </div>
+                    <div class="text-sm text-gray-500">📱 Production • 2023</div>
+                </div>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-indigo-500 to-cyan-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">DevOps Pipeline</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">CI/CD Automation Suite</h3>
+                    <p class="text-gray-400 mb-4">Automated deployment pipeline reducing deployment time by 80% with zero-downtime releases</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">Azure DevOps</span>
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded">Docker</span>
+                        <span class="bg-purple-500/20 text-purple-400 text-xs px-2 py-1 rounded">Kubernetes</span>
+                    </div>
+                    <div class="text-sm text-gray-500">⚡ Production • 2023</div>
+                </div>
+            </div>
+
+            <!-- Project 5 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-yellow-500 to-orange-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">E-commerce Platform</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Microservices E-commerce</h3>
+                    <p class="text-gray-400 mb-4">Scalable e-commerce platform using microservices architecture handling millions of transactions</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">Node.js</span>
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">React</span>
+                        <span class="bg-yellow-500/20 text-yellow-400 text-xs px-2 py-1 rounded">MongoDB</span>
+                    </div>
+                    <div class="text-sm text-gray-500">🛒 Production • 2022</div>
+                </div>
+            </div>
+
+            <!-- Project 6 -->
+            <div class="bg-gray-800 rounded-xl overflow-hidden hover:transform hover:scale-105 transition-all duration-300 shadow-xl hover:shadow-2xl">
+                <div class="h-48 bg-gradient-to-br from-pink-500 to-rose-600 relative">
+                    <div class="absolute inset-0 bg-black/20"></div>
+                    <div class="absolute bottom-4 left-4 text-white font-semibold">Data Visualization</div>
+                </div>
+                <div class="p-6">
+                    <h3 class="text-xl font-semibold mb-2">Interactive Data Viz Tool</h3>
+                    <p class="text-gray-400 mb-4">Real-time data visualization tool for business metrics with interactive charts and dashboards</p>
+                    <div class="flex flex-wrap gap-2 mb-4">
+                        <span class="bg-orange-500/20 text-orange-400 text-xs px-2 py-1 rounded">D3.js</span>
+                        <span class="bg-green-500/20 text-green-400 text-xs px-2 py-1 rounded">Vue.js</span>
+                        <span class="bg-primary/20 text-primary text-xs px-2 py-1 rounded">TypeScript</span>
+                    </div>
+                    <div class="text-sm text-gray-500">📊 Production • 2022</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-br from-gray-900 to-gray-800">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl font-bold mb-8">Let's Connect</h2>
+            <p class="text-xl mb-8 text-gray-300 max-w-2xl mx-auto">
+                I'm always open to discussing new opportunities, interesting projects, 
+                and innovative ideas. Let's build something amazing together!
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" 
+                   class="bg-primary hover:bg-blue-700 px-8 py-4 rounded-full text-lg transition-all duration-300 transform hover:scale-105 shadow-lg inline-flex items-center justify-center">
+                    💼 Connect on LinkedIn
+                </a>
+                <a href="mailto:arjith@example.com" 
+                   class="border border-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full text-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center">
+                    📧 Send an Email
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 bg-black/50 text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
+                <div class="text-gray-400">
+                    &copy; 2024 Arjith Retna Srikanth. Built with passion and modern web technologies.
+                </div>
+                <div class="flex space-x-6">
+                    <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" class="text-gray-400 hover:text-primary transition-colors">
+                        LinkedIn
+                    </a>
+                    <a href="https://github.com/arjith" class="text-gray-400 hover:text-primary transition-colors">
+                        GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Smooth scrolling script -->
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', function() {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('bg-gray-900/95');
+            } else {
+                nav.classList.remove('bg-gray-900/95');
+            }
+        });
+    </script>
 </body>
 </html>
