@@ -5,12 +5,13 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev", 
+    "start": "astro dev",
     "build": "astro build",
     "preview": "astro preview"
   },
   "dependencies": {
     "@astrojs/tailwind": "^2.1.0",
+    "@tailwindcss/typography": "^0.5.16",
     "astro": "^2.10.0",
     "tailwindcss": "^3.3.0"
   },
