@@ -9,6 +9,7 @@ node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+pnpm-debug.log*
 
 # Build outputs
 dist/
@@ -30,6 +31,39 @@ lib-cov
 coverage/
 *.lcov
 
+# nyc test coverage
+.nyc_output
+
+# Grunt intermediate storage
+.grunt
+
+# Bower dependency directory
+bower_components
+
+# node-waf configuration
+.lock-wscript
+
+# Compiled binary addons
+build/Release
+
+# Dependency directories
+jspm_packages/
+
+# TypeScript cache
+*.tsbuildinfo
+
+# Optional npm cache directory
+.npm
+
+# Optional eslint cache
+.eslintcache
+
+# Microbundle cache
+.rpt2_cache/
+.rts2_cache_cjs/
+.rts2_cache_es/
+.rts2_cache_umd/
+
 # Dependency directories
 jspm_packages/
 
@@ -45,6 +79,93 @@ jspm_packages/
 # Yarn Integrity file
 .yarn-integrity
 
+# dotenv environment variables file
+.env
+.env.test
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+# parcel-bundler cache
+.cache
+.parcel-cache
+
+# Next.js build output
+.next
+
+# Nuxt.js build / generate output
+.nuxt
+dist
+
+# Gatsby files
+.cache/
+public
+
+# Vuepress build output
+.vuepress/dist
+
+# Serverless directories
+.serverless/
+
+# FuseBox cache
+.fusebox/
+
+# DynamoDB Local files
+.dynamodb/
+
+# TernJS port file
+.tern-port
+
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test
+
+# yarn v2
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+
+# MacOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# MacOS thumbnails
+._*
+
+# MacOS directory attributes
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+
+# Windows directory attributes
+desktop.ini
+
+# Windows recycle bin
+$RECYCLE.BIN/
+
+# Windows shortcuts
+*.lnk
+
+# Linux
+*~
+
+# KDE directory preferences
+.directory
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+
+# .nfs files are created when an open file is removed but is still being accessed
+.nfs*
+
 # parcel-bundler cache (https://parceljs.org/)
 .cache
 .parcel-cache
@@ -55,6 +176,131 @@ jspm_packages/
 *.swp
 *.swo
 
+# Logs
+logs
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# Build output
+build/
+dist/
+out/
+
+# Test output
+test-results/
+coverage/
+
+# Docker
+.dockerignore
+Dockerfile.local
+
+# Cypress
+cypress/videos/
+cypress/screenshots/
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# Local environment files
+.env*.local
+
+# Vercel
+.vercel
+
+# Netlify
+.netlify
+
+# Firebase
+.firebase
+
+# AWS
+.aws
+
+# Azure
+.azure
+
+# Google Cloud
+.gcloud
+
+# Backup files
+*.bak
+*~
+.backup/
+
+# Archive files
+*.tar
+*.gz
+*.zip
+*.rar
+
+# Cache directories
+.cache/
+.parcel-cache/
+.turbo/
+
+# OS generated files
+Icon?
+ehthumbs.db
+Desktop.ini
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Package manager lock files (keep one, comment out others based on preference)
+# package-lock.json
+# yarn.lock
+# pnpm-lock.yaml
+
+# Local development
+*.local
+local.*
+
+# Performance monitoring
+.lighthouse/
+lighthouse-results/
+
+# Bundle analyzers
+bundle-analyzer/
+webpack-bundle-analyzer/
+
+# Storybook
+storybook-static/
+
+# Generated files
+generated/
+auto-generated/
+
+# Database
+*.db
+*.sqlite
+*.sqlite3
+
+# CDN and static assets (if dynamically generated)
+# static/
+# assets/generated/
+
+# Thumbnails and optimized images
+thumbs/
+optimized/
+
+# Site-specific
+# Add any site-specific ignores here
 # OS generated files
 .DS_Store
 .DS_Store?
