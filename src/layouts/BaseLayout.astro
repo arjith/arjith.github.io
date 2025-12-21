@@ -83,15 +83,14 @@ const fullTitle = title === 'Home' ? 'Arjith Retna Srikanth - Senior Software En
     </script>
 
     <!-- Custom CSS -->
-    <style>
-      @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap');
-      
+    <style is:global>
       :root {
-        --bg-primary: #121212;
-        --bg-secondary: #1e1e1e;
-        --text-primary: #e0e0e0;
-        --text-secondary: #a0a0a0;
+        --bg-primary: #09090b; /* Deep black (Zinc-950) */
+        --bg-secondary: #18181b; /* Zinc-900 */
+        --text-primary: #fafafa; /* Zinc-50 */
+        --text-secondary: #a1a1aa; /* Zinc-400 */
         --accent: #3b82f6;
+        --border-color: rgba(255, 255, 255, 0.1);
       }
 
       * {
@@ -99,9 +98,12 @@ const fullTitle = title === 'Home' ? 'Arjith Retna Srikanth - Senior Software En
       }
 
       html {
-        font-family: 'Inter', system-ui, sans-serif;
+        font-family: 'Inter', system-ui, -apple-system, sans-serif;
         background-color: var(--bg-primary);
         color: var(--text-primary);
+        font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
       }
 
       body {
@@ -139,10 +141,15 @@ const fullTitle = title === 'Home' ? 'Arjith Retna Srikanth - Senior Software En
       }
     </style>
   </head>
-  <body class="bg-dark-bg text-dark-text">
+  <body class="bg-zinc-950 text-zinc-50 selection:bg-blue-500/30 selection:text-blue-200">
     <!-- Loading Screen -->
-    <div id="loading-screen" class="loading-screen">
-      <div id="loading-animation" style="width: 200px; height: 200px;"></div>
+    <div id="loading-screen" class="loading-screen bg-[#09090b]">
+      <div class="relative">
+        <div class="w-16 h-16 border-2 border-zinc-800 border-t-blue-500 rounded-full animate-spin"></div>
+        <div class="absolute inset-0 flex items-center justify-center">
+          <div class="w-8 h-8 bg-blue-500/20 rounded-full blur-xl animate-pulse"></div>
+        </div>
+      </div>
     </div>
 
     <!-- Main Content -->
