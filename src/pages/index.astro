@@ -1,23 +1,20 @@
----
 import BaseLayout from '../layouts/BaseLayout.astro';
 import Hero from '../components/Hero.astro';
 import Skills from '../components/Skills.astro';
 import Projects from '../components/Projects.astro';
-import Blog from '../components/Blog.astro';
 import Contact from '../components/Contact.astro';
 
 const title = "Home";
-const description = "Arjith Retna Srikanth - Senior Software Engineer at Microsoft. Personal portfolio showcasing projects in DevOps, Serverless, AI/ML, and technical writings.";
+const description = "Arjith Retna Srikanth - Engineering Manager at Microsoft (ODSP). Exploring the intersection of AI, productivity, and high-performance engineering.";
 ---
 
 <BaseLayout title={title} description={description}>
     <Hero />
     <Skills />
     <Projects />
-    <Blog />
     <Contact />
     
     <footer class="py-12 text-center text-zinc-500 text-xs border-t border-zinc-900 bg-zinc-950">
-        <p>&copy; {new Date().getFullYear()} Arjith Retna Srikanth. Crafted for the future of web.</p>
+        <p>&copy; {new Date().getFullYear()} Arjith Retna Srikanth.</p>
     </footer>
 </BaseLayout>
