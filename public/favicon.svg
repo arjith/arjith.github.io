@@ -1,8 +1,0 @@
-<!-- A basic example SVG favicon -->
-<svg width="256" height="256" viewBox="0 0 256 256" xmlns="http://www.w3.org/2000/svg">
-    <rect width="256" height="256" rx="64" fill="#3B82F6"/>
-    <text x="128" y="160" font-family="Inter, sans-serif" font-size="120" font-weight="bold" text-anchor="middle" fill="white">ARS</text>
-    <circle cx="200" cy="60" r="8" fill="#60A5FA" opacity="0.8"/>
-    <circle cx="220" cy="80" r="4" fill="#93C5FD" opacity="0.6"/>
-    <circle cx="60" cy="200" r="6" fill="#DBEAFE" opacity="0.4"/>
-</svg>
