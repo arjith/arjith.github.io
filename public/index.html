@@ -1,6 +1,7 @@
 <!DOCTYPE html>
-<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+<html lang="en">
+<head>
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Arjith Retna Srikanth</title>
 <meta name="description" content="Principal Engineering Manager at Microsoft — ODSP Storage, enterprise-scale data pipelines, and a career spanning native C++ to cloud infrastructure.">
@@ -8,219 +9,232 @@
 <meta property="og:description" content="From native Android code to enterprise cloud storage. Building at the intersection of performance, scale, and reliability.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arjith.github.io">
-<link rel="preconnect" href="https://fonts.googleapis.com/">
-<link rel="preconnect" href="https://fonts.gstatic.com/" crossorigin="">
-<link href="./Arjith Retna Srikanth_files/css2" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#050508;--surface:#0c0c12;--surface2:#141420;
-  --border:#1a1a2a;--border2:#252538;
-  --text:#f0f0f5;--text2:#8888a0;--text3:#55556a;
-  --blue:#3b82f6;--purple:#8b5cf6;--rose:#f472b6;
-  --cyan:#22d3ee;--amber:#f59e0b;--green:#22c55e;
+  --bg:#08080c;--surface:#0e0e14;--surface2:#15151e;
+  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
+  --text:#e8e6e3;--text2:#7a7880;--text3:#4a4850;
+  --accent:#c4a47c;--accent2:#a08060;--accent-glow:rgba(196,164,124,.08);
+  --ice:#88b4cc;--sage:#7c9c80;--warm:#c4a47c;
 }
 html{scroll-behavior:smooth}
-body{font-family:'Space Grotesk',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.65;-webkit-font-smoothing:antialiased}
-::selection{background:#8b5cf640;color:#fff}
-::-webkit-scrollbar{width:4px}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased;font-weight:300}
+::selection{background:rgba(196,164,124,.25);color:#fff}
+::-webkit-scrollbar{width:3px}
 ::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:#333;border-radius:2px}
+::-webkit-scrollbar-thumb{background:var(--text3);border-radius:2px}
 
 /* ═══ CURSOR GLOW ═══ */
-.cursor-glow{position:fixed;width:500px;height:500px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(139,92,246,.05) 0%,transparent 70%);transform:translate(-50%,-50%);z-index:0;transition:opacity .3s}
+.cursor-glow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(196,164,124,.04) 0%,transparent 70%);transform:translate(-50%,-50%);z-index:0;transition:opacity .3s}
+
+/* ═══ GRAIN OVERLAY ═══ */
+.grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;mix-blend-mode:overlay}
+.grain::after{content:'';position:absolute;inset:-200%;width:400%;height:400%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grainShift 0.5s steps(1) infinite}
+@keyframes grainShift{0%{transform:translate(0,0)}25%{transform:translate(-5%,-5%)}50%{transform:translate(5%,0)}75%{transform:translate(0,5%)}100%{transform:translate(-5%,5%)}}
 
 /* ═══ LOADER ═══ */
 .loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
 .loader.done{opacity:0;visibility:hidden;pointer-events:none}
-.loader-bar{width:180px;height:2px;background:var(--border);border-radius:1px;overflow:hidden}
-.loader-bar span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--blue),var(--purple),var(--rose));border-radius:1px;animation:load 1.2s ease forwards}
+.loader-bar{width:120px;height:1px;background:var(--border2);overflow:hidden}
+.loader-bar span{display:block;height:100%;width:0;background:var(--accent);animation:load 1.2s ease forwards}
 @keyframes load{to{width:100%}}
 
 /* ═══ NAV ═══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1rem,4vw,3rem);transition:all .5s}
-nav.scrolled{background:rgba(5,5,8,.82);backdrop-filter:blur(24px);border-bottom:1px solid var(--border)}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,5vw,4rem);transition:all .5s}
+nav.scrolled{background:rgba(8,8,12,.88);backdrop-filter:blur(30px) saturate(1.2);border-bottom:1px solid var(--border)}
 .nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-weight:700;font-size:1rem;letter-spacing:-.03em}
-.nav-logo span{color:var(--purple)}
+.nav-logo{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
+.nav-logo span{color:var(--accent)}
 .nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
-.nav-links a{color:var(--text3);text-decoration:none;font-size:.8rem;font-weight:500;transition:color .3s;letter-spacing:.02em}
+.nav-links a{color:var(--text3);text-decoration:none;font-size:.72rem;font-weight:500;transition:color .4s;letter-spacing:.08em;text-transform:uppercase}
 .nav-links a:hover{color:var(--text)}
-.nav-status{display:flex;align-items:center;gap:6px;font-size:.72rem;color:var(--text3);padding:.35rem .85rem;border:1px solid var(--border);border-radius:100px}
-.nav-status .pulse{width:6px;height:6px;background:var(--green);border-radius:50%;box-shadow:0 0 6px rgba(34,197,94,.5)}
+.nav-status{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--text3);padding:.35rem .9rem;border:1px solid var(--border);border-radius:100px;letter-spacing:.02em}
+.nav-status .pulse{width:5px;height:5px;background:var(--sage);border-radius:50%;box-shadow:0 0 8px rgba(124,156,128,.5)}
 .hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
-.hamburger svg{stroke:var(--text);width:20px;height:20px}
+.hamburger svg{stroke:var(--text);width:18px;height:18px}
 
 /* ═══ HERO ═══ */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:0 clamp(1rem,4vw,3rem);overflow:hidden}
-.hero-noise{position:absolute;inset:0;opacity:.025;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
-.hero-lines{position:absolute;inset:0;overflow:hidden}
-.hero-line{position:absolute;width:1px;height:100vh;background:linear-gradient(to bottom,transparent,var(--border) 50%,transparent);opacity:.4}
+.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:0 clamp(1.5rem,5vw,4rem);overflow:hidden}
+.hero-grid{position:absolute;inset:0;overflow:hidden;opacity:.35}
+.hero-line{position:absolute;width:1px;background:linear-gradient(to bottom,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%);height:100%}
+.hero-hline{position:absolute;height:1px;background:linear-gradient(to right,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%);width:100%}
 .hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:2}
-.hero-intro{font-size:.76rem;font-weight:500;color:var(--text3);letter-spacing:.2em;text-transform:uppercase;margin-bottom:2rem;overflow:hidden}
+.hero-intro{font-size:.68rem;font-weight:500;color:var(--text3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:2.5rem;overflow:hidden}
 .hero-intro span{display:inline-block;animation:slideUp .8s ease forwards;opacity:0;animation-delay:1.4s}
 @keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
 
-.hero h1{font-family:'Instrument Serif',serif;font-size:clamp(2.8rem,7.5vw,6.5rem);font-weight:400;line-height:.95;letter-spacing:-.04em;margin-bottom:1.5rem}
+.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.6rem,7vw,5.8rem);font-weight:400;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem}
 .hero h1 .line{display:block;overflow:hidden}
 .hero h1 .line span{display:inline-block;animation:heroIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:translateY(100%)}
 .hero h1 .line:nth-child(1) span{animation-delay:1.5s}
 .hero h1 .line:nth-child(2) span{animation-delay:1.65s}
 .hero h1 .line:nth-child(3) span{animation-delay:1.8s}
 @keyframes heroIn{to{opacity:1;transform:translateY(0)}}
-.hero h1 em{font-style:italic;color:var(--purple)}
-.hero h1 .thin{font-family:'Space Grotesk',sans-serif;font-weight:300;font-size:.5em;color:var(--text2);letter-spacing:-.02em}
+.hero h1 em{font-style:italic;color:var(--accent)}
+.hero h1 .thin{font-family:'Outfit',sans-serif;font-weight:200;font-size:.48em;color:var(--text2);letter-spacing:0}
 
-.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3rem;animation:fadeIn 1s ease forwards;animation-delay:2.2s;opacity:0}
+.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3.5rem;animation:fadeIn 1s ease forwards;animation-delay:2.2s;opacity:0}
 @keyframes fadeIn{to{opacity:1}}
-.hero-desc{max-width:440px;font-size:.88rem;color:var(--text2);line-height:1.8}
-.hero-desc strong{color:var(--text);font-weight:600}
-.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:.68rem;letter-spacing:.15em;text-transform:uppercase}
-.hero-scroll .scroll-line{width:1px;height:40px;background:linear-gradient(to bottom,var(--text3),transparent);animation:scrollPulse 2s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.3;transform:scaleY(.6)}}
+.hero-desc{max-width:420px;font-size:.85rem;color:var(--text2);line-height:1.85}
+.hero-desc strong{color:var(--text);font-weight:500}
+.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase}
+.hero-scroll .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2.5s ease-in-out infinite}
+@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.2;transform:scaleY(.5)}}
+
+/* ═══ DIVIDER LINE ═══ */
+.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 20%,var(--border2) 80%,transparent);margin:0}
 
 /* ═══ MARQUEE ═══ */
-.marquee-section{padding:1.5rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:var(--surface)}
-.marquee-track{display:flex;animation:marquee 35s linear infinite;width:max-content}
-.marquee-item{flex-shrink:0;padding:0 1.8rem;font-size:.78rem;color:var(--text3);font-weight:500;white-space:nowrap;display:flex;align-items:center;gap:.6rem}
-.marquee-item .sep{color:var(--purple);font-size:.5rem}
+.marquee-section{padding:1.2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:transparent}
+.marquee-track{display:flex;animation:marquee 40s linear infinite;width:max-content}
+.marquee-item{flex-shrink:0;padding:0 2rem;font-size:.72rem;color:var(--text3);font-weight:400;white-space:nowrap;display:flex;align-items:center;gap:.8rem;letter-spacing:.04em}
+.marquee-item .sep{color:var(--accent);font-size:.35rem;opacity:.5}
 @keyframes marquee{to{transform:translateX(-50%)}}
 
-/* ═══ UTILS ═══ */
-section{padding:clamp(4rem,10vw,8rem) clamp(1rem,4vw,3rem);position:relative}
+/* ═══ SECTION UTILS ═══ */
+section{padding:clamp(5rem,12vw,9rem) clamp(1.5rem,5vw,4rem);position:relative}
 .container{max-width:1100px;margin:0 auto}
-.stag{font-size:.68rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);margin-bottom:1rem}
-.stitle{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4.5vw,3.2rem);font-weight:400;letter-spacing:-.03em;line-height:1.1;margin-bottom:1rem}
-.stitle em{font-style:italic;color:var(--rose)}
-.sdesc{color:var(--text2);font-size:.9rem;max-width:520px;line-height:1.8}
+.stag{font-size:.62rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
+.stag::before{content:'';width:24px;height:1px;background:var(--accent)}
+.stitle{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem}
+.stitle em{font-style:italic;color:var(--accent)}
+.sdesc{color:var(--text2);font-size:.88rem;max-width:480px;line-height:1.85}
 
 /* ═══ ABOUT BENTO ═══ */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:1rem;margin-top:3rem}
-.bento-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;position:relative;overflow:hidden;transition:all .5s cubic-bezier(.16,1,.3,1)}
-.bento-card:hover{border-color:var(--border2);transform:translateY(-2px)}
-.bento-card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),rgba(139,92,246,.04),transparent 50%);pointer-events:none}
+.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:.8rem;margin-top:3rem}
+.bento-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;position:relative;overflow:hidden;transition:all .6s cubic-bezier(.16,1,.3,1)}
+.bento-card:hover{border-color:var(--border2);transform:translateY(-1px)}
+.bento-card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),var(--accent-glow),transparent 50%);pointer-events:none}
 .b-main{grid-column:span 7;grid-row:span 2}
 .b-stat1{grid-column:span 5}
 .b-stat2{grid-column:span 5}
 .b-wide{grid-column:span 12}
 .b-third{grid-column:span 4}
 
-.b-label{font-size:.66rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem}
-.b-main h3{font-family:'Instrument Serif',serif;font-size:1.7rem;font-weight:400;letter-spacing:-.02em;margin-bottom:1rem;line-height:1.2}
-.b-main h3 em{font-style:italic;color:var(--cyan)}
-.b-main p{color:var(--text2);font-size:.86rem;line-height:1.8;margin-bottom:.8rem}
+.b-label{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem}
+.b-main h3{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;letter-spacing:-.01em;margin-bottom:1rem;line-height:1.25}
+.b-main h3 em{font-style:italic;color:var(--ice)}
+.b-main p{color:var(--text2);font-size:.84rem;line-height:1.85;margin-bottom:.7rem}
 
-.stat-number{font-size:clamp(2.2rem,4vw,3rem);font-weight:700;letter-spacing:-.04em;background:linear-gradient(135deg,var(--blue),var(--purple));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.stat-label{color:var(--text3);font-size:.78rem;font-weight:500;margin-top:.3rem}
-.stat-sub{color:var(--text3);font-size:.72rem;margin-top:.5rem;line-height:1.6}
+.stat-number{font-size:clamp(2rem,3.5vw,2.6rem);font-weight:600;letter-spacing:-.04em;color:var(--accent)}
+.stat-label{color:var(--text3);font-size:.74rem;font-weight:500;margin-top:.3rem;letter-spacing:.04em}
+.stat-sub{color:var(--text3);font-size:.68rem;margin-top:.6rem;line-height:1.7}
 
-.b-third h4{font-size:.9rem;font-weight:600;margin-bottom:.5rem}
-.b-third p{color:var(--text2);font-size:.8rem;line-height:1.7}
-.b-third .bt-icon{font-size:1.3rem;margin-bottom:.8rem}
+.b-third .bt-icon{width:32px;height:32px;margin-bottom:1rem;color:var(--accent);opacity:.7}
+.b-third .bt-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.b-third h4{font-size:.85rem;font-weight:500;margin-bottom:.5rem;letter-spacing:-.01em}
+.b-third p{color:var(--text2);font-size:.78rem;line-height:1.75}
 
-.journey-bar{display:flex;gap:2px;margin-top:1rem;height:40px;align-items:flex-end}
-.journey-seg{flex:1;border-radius:4px 4px 0 0;transition:all .4s;cursor:default;position:relative}
-.journey-seg:hover{filter:brightness(1.3);transform:scaleY(1.12);transform-origin:bottom}
-.journey-seg .jt{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:.6rem;white-space:nowrap;color:var(--text);background:var(--surface2);border:1px solid var(--border);padding:.2rem .55rem;border-radius:4px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:5}
+.journey-bar{display:flex;gap:2px;margin-top:1rem;height:44px;align-items:flex-end}
+.journey-seg{flex:1;border-radius:3px 3px 0 0;transition:all .4s;cursor:default;position:relative;opacity:.85}
+.journey-seg:hover{opacity:1;filter:brightness(1.2);transform:scaleY(1.08);transform-origin:bottom}
+.journey-seg .jt{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:.58rem;white-space:nowrap;color:var(--text);background:var(--surface2);border:1px solid var(--border2);padding:.25rem .6rem;border-radius:4px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:5;font-weight:400}
 .journey-seg:hover .jt{opacity:1}
 
 /* ═══ CAREER ═══ */
-.career-list{display:flex;flex-direction:column;gap:1px;background:var(--border);border-radius:16px;overflow:hidden;margin-top:3rem}
-.career-item{background:var(--surface);padding:2.2rem 2.5rem;display:grid;grid-template-columns:180px 1fr auto;gap:2rem;align-items:start;transition:background .4s;cursor:default}
+.career-list{display:flex;flex-direction:column;gap:0;margin-top:3rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
+.career-item{background:var(--surface);padding:2rem 2.5rem;display:grid;grid-template-columns:160px 1fr auto;gap:2rem;align-items:start;transition:background .4s;cursor:default;border-bottom:1px solid var(--border)}
+.career-item:last-child{border-bottom:none}
 .career-item:hover{background:var(--surface2)}
-.c-period{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text3);padding-top:.15rem}
-.c-period .c-now{color:var(--cyan);display:block;margin-bottom:2px}
-.c-body h3{font-size:1.1rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.2rem}
-.c-body .c-company{color:var(--purple);font-size:.82rem;font-weight:500;margin-bottom:.7rem}
-.c-body p{color:var(--text2);font-size:.84rem;line-height:1.75;max-width:560px}
-.c-tags{display:flex;flex-wrap:wrap;gap:.3rem;justify-content:flex-end;max-width:200px}
-.c-tag{font-size:.63rem;padding:.18rem .45rem;border:1px solid var(--border);border-radius:4px;color:var(--text3);font-family:'JetBrains Mono',monospace;white-space:nowrap;transition:border-color .3s}
-.career-item:hover .c-tag{border-color:#444}
+.c-period{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding-top:.15rem}
+.c-period .c-now{color:var(--accent);display:block;margin-bottom:2px}
+.c-body h3{font-size:1rem;font-weight:500;letter-spacing:-.01em;margin-bottom:.25rem}
+.c-body .c-company{color:var(--accent);font-size:.78rem;font-weight:400;margin-bottom:.6rem;opacity:.8}
+.c-body p{color:var(--text2);font-size:.82rem;line-height:1.8;max-width:540px}
+.c-tags{display:flex;flex-wrap:wrap;gap:.25rem;justify-content:flex-end;max-width:180px}
+.c-tag{font-size:.6rem;padding:.15rem .4rem;border:1px solid var(--border);border-radius:3px;color:var(--text3);font-family:'JetBrains Mono',monospace;white-space:nowrap;transition:border-color .3s}
+.career-item:hover .c-tag{border-color:var(--border2)}
 
 /* ═══ SKILLS ═══ */
-.skills-wrapper{columns:3;column-gap:1rem;margin-top:3rem}
-.skill-group{break-inside:avoid;background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:1.5rem;margin-bottom:1rem;transition:border-color .4s}
+.skills-wrapper{columns:3;column-gap:.8rem;margin-top:3rem}
+.skill-group{break-inside:avoid;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:.8rem;transition:border-color .4s}
 .skill-group:hover{border-color:var(--border2)}
-.skill-group h4{font-size:.68rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--text3);margin-bottom:1rem;display:flex;align-items:center;gap:6px}
-.sg-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.skill-pills{display:flex;flex-wrap:wrap;gap:.35rem}
-.sp{font-size:.75rem;padding:.32rem .65rem;border:1px solid var(--border);border-radius:6px;color:var(--text2);font-weight:400;transition:all .3s;cursor:default}
-.sp:hover{border-color:var(--purple);color:var(--text);background:rgba(139,92,246,.06)}
+.skill-group h4{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;display:flex;align-items:center;gap:7px}
+.sg-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
+.skill-pills{display:flex;flex-wrap:wrap;gap:.3rem}
+.sp{font-size:.72rem;padding:.28rem .58rem;border:1px solid var(--border);border-radius:4px;color:var(--text2);font-weight:400;transition:all .3s;cursor:default}
+.sp:hover{border-color:var(--accent);color:var(--text);background:var(--accent-glow)}
 
 /* ═══ PROJECTS ═══ */
-.projects-list{display:flex;flex-direction:column;gap:1rem;margin-top:3rem}
-.proj{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:2rem;background:var(--surface);border:1px solid var(--border);border-radius:16px;text-decoration:none;color:inherit;transition:all .5s cubic-bezier(.16,1,.3,1);align-items:center}
-.proj:hover{border-color:var(--border2);transform:translateX(4px);background:var(--surface2)}
-.proj h3{font-size:1.05rem;font-weight:600;letter-spacing:-.01em;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.proj-badge{font-size:.58rem;padding:.12rem .4rem;border-radius:4px;font-weight:600;letter-spacing:.05em;text-transform:uppercase}
-.proj-badge.ai{background:rgba(139,92,246,.12);border:1px solid rgba(139,92,246,.25);color:var(--purple)}
-.proj-badge.oss{background:rgba(34,197,94,.12);border:1px solid rgba(34,197,94,.25);color:var(--green)}
-.proj-badge.app{background:rgba(59,130,246,.12);border:1px solid rgba(59,130,246,.25);color:var(--blue)}
-.proj-badge.fork{background:rgba(136,136,160,.1);border:1px solid rgba(136,136,160,.25);color:var(--text2)}
-.proj p{color:var(--text2);font-size:.83rem;line-height:1.7;max-width:600px}
-.proj-stack{display:flex;gap:.3rem;margin-top:.7rem}
-.proj-stack span{font-size:.66rem;padding:.18rem .45rem;border:1px solid var(--border);border-radius:4px;color:var(--text3);font-family:'JetBrains Mono',monospace}
-.proj-arrow{font-size:1.2rem;color:var(--text3);transition:all .3s}
-.proj:hover .proj-arrow{color:var(--text);transform:translateX(4px)}
+.projects-list{display:flex;flex-direction:column;gap:.8rem;margin-top:3rem}
+.proj{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.8rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;transition:all .5s cubic-bezier(.16,1,.3,1);align-items:center}
+.proj:hover{border-color:var(--border2);transform:translateX(3px);background:var(--surface2)}
+.proj h3{font-size:.95rem;font-weight:500;letter-spacing:-.01em;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
+.proj-badge{font-size:.55rem;padding:.1rem .4rem;border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
+.proj-badge.ai{background:rgba(196,164,124,.1);border:1px solid rgba(196,164,124,.2);color:var(--accent)}
+.proj-badge.oss{background:rgba(124,156,128,.1);border:1px solid rgba(124,156,128,.2);color:var(--sage)}
+.proj-badge.app{background:rgba(136,180,204,.1);border:1px solid rgba(136,180,204,.2);color:var(--ice)}
+.proj-badge.fork{background:rgba(122,120,128,.08);border:1px solid rgba(122,120,128,.2);color:var(--text2)}
+.proj p{color:var(--text2);font-size:.8rem;line-height:1.75;max-width:580px}
+.proj-stack{display:flex;gap:.25rem;margin-top:.6rem}
+.proj-stack span{font-size:.62rem;padding:.15rem .4rem;border:1px solid var(--border);border-radius:3px;color:var(--text3);font-family:'JetBrains Mono',monospace}
+.proj-arrow{font-size:1.1rem;color:var(--text3);transition:all .4s;font-family:'DM Serif Display',serif}
+.proj:hover .proj-arrow{color:var(--accent);transform:translateX(4px)}
 
 /* ═══ EDUCATION ═══ */
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-top:3rem}
-.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;transition:all .4s}
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:3rem}
+.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:all .4s}
 .edu-card:hover{border-color:var(--border2)}
-.edu-card .edu-icon{font-size:1.5rem;margin-bottom:1rem}
-.edu-card h3{font-size:1rem;font-weight:600;margin-bottom:.2rem}
-.edu-card .edu-degree{color:var(--purple);font-size:.82rem;font-weight:500;margin-bottom:.5rem}
-.edu-card p{color:var(--text2);font-size:.82rem;line-height:1.7}
-.edu-card .edu-extra{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.3rem}
-.edu-card .edu-extra span{font-size:.68rem;padding:.2rem .5rem;border:1px solid var(--border);border-radius:4px;color:var(--text3)}
+.edu-card .edu-icon{width:28px;height:28px;margin-bottom:1.2rem;color:var(--accent);opacity:.6}
+.edu-card .edu-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
+.edu-card h3{font-size:.92rem;font-weight:500;margin-bottom:.2rem;letter-spacing:-.01em}
+.edu-card .edu-degree{color:var(--accent);font-size:.78rem;font-weight:400;margin-bottom:.6rem;opacity:.8}
+.edu-card p{color:var(--text2);font-size:.78rem;line-height:1.75}
+.edu-card .edu-extra{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.25rem}
+.edu-card .edu-extra span{font-size:.62rem;padding:.15rem .45rem;border:1px solid var(--border);border-radius:3px;color:var(--text3)}
 
 /* ═══ CONTACT ═══ */
 .contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.contact-left h2{font-family:'Instrument Serif',serif;font-size:clamp(2rem,4vw,3rem);font-weight:400;letter-spacing:-.03em;margin-bottom:1rem}
-.contact-left h2 em{font-style:italic;color:var(--rose)}
-.contact-left>p{color:var(--text2);font-size:.88rem;line-height:1.8;margin-bottom:2rem;max-width:400px}
-.c-links{display:flex;flex-direction:column;gap:.5rem}
-.c-link{display:flex;align-items:center;gap:1rem;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:12px;text-decoration:none;color:var(--text);transition:all .4s;background:var(--surface)}
-.c-link:hover{border-color:var(--purple);transform:translateX(6px);background:var(--surface2)}
-.cl-i{width:36px;height:36px;border-radius:10px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-size:.85rem;flex-shrink:0;font-weight:600}
-.cl-t{font-size:.85rem;font-weight:500}
-.cl-s{font-size:.72rem;color:var(--text3)}
+.contact-left h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;letter-spacing:-.02em;margin-bottom:1rem}
+.contact-left h2 em{font-style:italic;color:var(--accent)}
+.contact-left>p{color:var(--text2);font-size:.85rem;line-height:1.85;margin-bottom:2rem;max-width:380px}
+.c-links{display:flex;flex-direction:column;gap:.4rem}
+.c-link{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:all .4s;background:var(--surface)}
+.c-link:hover{border-color:var(--accent);transform:translateX(4px);background:var(--surface2)}
+.cl-i{width:34px;height:34px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cl-i svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
+.cl-t{font-size:.82rem;font-weight:500}
+.cl-s{font-size:.68rem;color:var(--text3)}
 
 .contact-right{position:relative;display:flex;justify-content:center;align-items:center;min-height:320px}
-.contact-orb{position:absolute;width:200px;height:200px;border-radius:50%;filter:blur(80px);animation:orbFloat 6s ease-in-out infinite}
-.contact-orb:nth-child(1){background:var(--purple);opacity:.07}
-.contact-orb:nth-child(2){background:var(--rose);opacity:.05;left:30%;animation-delay:2s}
-@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,-20px)}}
+.contact-orb{position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(80px);animation:orbFloat 8s ease-in-out infinite}
+.contact-orb:nth-child(1){background:var(--accent);opacity:.04}
+.contact-orb:nth-child(2){background:var(--ice);opacity:.03;left:30%;animation-delay:3s}
+@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-15px)}}
 
-.contact-terminal{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.76rem;color:var(--text2);width:100%;max-width:360px;position:relative;z-index:2}
-.ct-header{display:flex;gap:5px;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
-.ct-dot{width:8px;height:8px;border-radius:50%}
-.ct-line{margin-bottom:.35rem;line-height:1.6}
-.ct-prompt{color:var(--purple)}
+.contact-terminal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text2);width:100%;max-width:340px;position:relative;z-index:2}
+.ct-header{display:flex;gap:5px;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.ct-dot{width:7px;height:7px;border-radius:50%}
+.ct-line{margin-bottom:.3rem;line-height:1.65}
+.ct-prompt{color:var(--accent);opacity:.7}
 .ct-val{color:var(--text)}
-.ct-cursor{display:inline-block;width:7px;height:14px;background:var(--purple);animation:blink 1s step-end infinite;vertical-align:middle;margin-left:2px}
+.ct-cursor{display:inline-block;width:6px;height:13px;background:var(--accent);animation:blink 1.2s step-end infinite;vertical-align:middle;margin-left:2px;opacity:.7}
 @keyframes blink{50%{opacity:0}}
 
 /* ═══ FOOTER ═══ */
-footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
+footer{padding:2rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border)}
 .footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.f-left{font-size:.75rem;color:var(--text3)}
-.f-right{display:flex;gap:1.5rem}
-.f-right a{color:var(--text3);text-decoration:none;font-size:.75rem;transition:color .3s}
-.f-right a:hover{color:var(--text)}
+.f-left{font-size:.68rem;color:var(--text3);letter-spacing:.02em}
+.f-right{display:flex;gap:1.8rem}
+.f-right a{color:var(--text3);text-decoration:none;font-size:.68rem;transition:color .3s;letter-spacing:.02em}
+.f-right a:hover{color:var(--accent)}
 
 /* ═══ REVEAL ═══ */
-.reveal{opacity:0;transform:translateY(24px);transition:all .8s cubic-bezier(.16,1,.3,1)}
+.reveal{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.16,1,.3,1)}
 .reveal.vis{opacity:1;transform:translateY(0)}
-.rd1{transition-delay:.05s}.rd2{transition-delay:.1s}.rd3{transition-delay:.15s}.rd4{transition-delay:.2s}
+.rd1{transition-delay:.06s}.rd2{transition-delay:.12s}.rd3{transition-delay:.18s}.rd4{transition-delay:.24s}
 
 /* ═══ RESPONSIVE ═══ */
 @media(max-width:900px){
   .hamburger{display:block}
-  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(5,5,8,.95);backdrop-filter:blur(20px);flex-direction:column;padding:1.5rem;border-bottom:1px solid var(--border);gap:1rem}
+  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(8,8,12,.96);backdrop-filter:blur(24px);flex-direction:column;padding:1.5rem;border-bottom:1px solid var(--border);gap:1rem}
   .nav-links.open{display:flex}
   .bento{display:flex;flex-direction:column}
-  .career-item{grid-template-columns:1fr;gap:.6rem;padding:1.5rem}
+  .career-item{grid-template-columns:1fr;gap:.5rem;padding:1.5rem}
   .career-item .c-tags{max-width:100%;justify-content:flex-start;margin-top:.5rem}
   .skills-wrapper{columns:1}
   .contact-layout{grid-template-columns:1fr}
@@ -238,10 +252,11 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 </head>
 <body>
 
-<div class="cursor-glow" id="cursorGlow" style="left: 1254.45px; top: 245.744px;"></div>
+<div class="grain"></div>
+<div class="cursor-glow" id="cursorGlow"></div>
 
 <!-- Loader -->
-<div class="loader done" id="loader">
+<div class="loader" id="loader">
   <div class="loader-bar"><span></span></div>
 </div>
 
@@ -266,8 +281,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 
 <!-- Hero -->
 <section class="hero">
-  <div class="hero-noise"></div>
-  <div class="hero-lines" id="heroLines"><div class="hero-line" style="left: 10%; opacity: 0.22;"></div><div class="hero-line" style="left: 21.5%; opacity: 0.27;"></div><div class="hero-line" style="left: 33%; opacity: 0.11;"></div><div class="hero-line" style="left: 44.5%; opacity: 0.2;"></div><div class="hero-line" style="left: 56%; opacity: 0.32;"></div><div class="hero-line" style="left: 67.5%; opacity: 0.14;"></div><div class="hero-line" style="left: 79%; opacity: 0.32;"></div><div class="hero-line" style="left: 90.5%; opacity: 0.15;"></div></div>
+  <div class="hero-grid" id="heroGrid"></div>
   <div class="hero-inner">
     <div class="hero-intro"><span>Principal Engineering Manager — Microsoft</span></div>
     <h1>
@@ -277,7 +291,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
     </h1>
     <div class="hero-bottom">
       <p class="hero-desc">
-        Leading <strong>OneDrive &amp; SharePoint Storage</strong> at Microsoft — blob storage, data migration pipelines, and governed systems for the largest enterprises. Previously built <strong>Viva Learning</strong> from scratch and helped unify <strong>Word, Excel &amp; PowerPoint</strong> into a single Office Mobile app deployed worldwide.
+        Leading <strong>OneDrive & SharePoint Storage</strong> at Microsoft — blob storage, data migration pipelines, and governed systems for the largest enterprises. Previously built <strong>Viva Learning</strong> from scratch and helped unify <strong>Word, Excel & PowerPoint</strong> into a single Office Mobile app deployed worldwide.
       </p>
       <div class="hero-scroll">
         <div class="scroll-line"></div>
@@ -290,39 +304,39 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 <!-- Marquee -->
 <div class="marquee-section">
   <div class="marquee-track">
-    <div class="marquee-item">C++ <span class="sep">●</span></div>
-    <div class="marquee-item">Java <span class="sep">●</span></div>
-    <div class="marquee-item">C# <span class="sep">●</span></div>
-    <div class="marquee-item">TypeScript <span class="sep">●</span></div>
-    <div class="marquee-item">React <span class="sep">●</span></div>
-    <div class="marquee-item">Azure <span class="sep">●</span></div>
-    <div class="marquee-item">Blob Storage <span class="sep">●</span></div>
-    <div class="marquee-item">Android NDK <span class="sep">●</span></div>
-    <div class="marquee-item">Data Migration <span class="sep">●</span></div>
-    <div class="marquee-item">Multi-Threading <span class="sep">●</span></div>
-    <div class="marquee-item">System Design <span class="sep">●</span></div>
-    <div class="marquee-item">Python <span class="sep">●</span></div>
-    <div class="marquee-item">Kubernetes <span class="sep">●</span></div>
-    <div class="marquee-item">Enterprise Security <span class="sep">●</span></div>
-    <div class="marquee-item">Performance <span class="sep">●</span></div>
-    <div class="marquee-item">Full Stack <span class="sep">●</span></div>
-    <!-- duplicate -->
-    <div class="marquee-item">C++ <span class="sep">●</span></div>
-    <div class="marquee-item">Java <span class="sep">●</span></div>
-    <div class="marquee-item">C# <span class="sep">●</span></div>
-    <div class="marquee-item">TypeScript <span class="sep">●</span></div>
-    <div class="marquee-item">React <span class="sep">●</span></div>
-    <div class="marquee-item">Azure <span class="sep">●</span></div>
-    <div class="marquee-item">Blob Storage <span class="sep">●</span></div>
-    <div class="marquee-item">Android NDK <span class="sep">●</span></div>
-    <div class="marquee-item">Data Migration <span class="sep">●</span></div>
-    <div class="marquee-item">Multi-Threading <span class="sep">●</span></div>
-    <div class="marquee-item">System Design <span class="sep">●</span></div>
-    <div class="marquee-item">Python <span class="sep">●</span></div>
-    <div class="marquee-item">Kubernetes <span class="sep">●</span></div>
-    <div class="marquee-item">Enterprise Security <span class="sep">●</span></div>
-    <div class="marquee-item">Performance <span class="sep">●</span></div>
-    <div class="marquee-item">Full Stack <span class="sep">●</span></div>
+    <div class="marquee-item">C++ <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Java <span class="sep">&bull;</span></div>
+    <div class="marquee-item">C# <span class="sep">&bull;</span></div>
+    <div class="marquee-item">TypeScript <span class="sep">&bull;</span></div>
+    <div class="marquee-item">React <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Azure <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Blob Storage <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Android NDK <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Data Migration <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Multi-Threading <span class="sep">&bull;</span></div>
+    <div class="marquee-item">System Design <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Python <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Kubernetes <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Enterprise Security <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Performance <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Full Stack <span class="sep">&bull;</span></div>
+    <!-- duplicate for seamless loop -->
+    <div class="marquee-item">C++ <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Java <span class="sep">&bull;</span></div>
+    <div class="marquee-item">C# <span class="sep">&bull;</span></div>
+    <div class="marquee-item">TypeScript <span class="sep">&bull;</span></div>
+    <div class="marquee-item">React <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Azure <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Blob Storage <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Android NDK <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Data Migration <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Multi-Threading <span class="sep">&bull;</span></div>
+    <div class="marquee-item">System Design <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Python <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Kubernetes <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Enterprise Security <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Performance <span class="sep">&bull;</span></div>
+    <div class="marquee-item">Full Stack <span class="sep">&bull;</span></div>
   </div>
 </div>
 
@@ -348,51 +362,51 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
       <div class="bento-card b-stat1 reveal rd4" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
         <div class="stat-number">5+</div>
         <div class="stat-label">Products Shipped</div>
-        <div class="stat-sub">Word, Excel, PPT for Android → Office Mobile → Viva Learning → ODSP Storage</div>
+        <div class="stat-sub">Word, Excel, PPT for Android &rarr; Office Mobile &rarr; Viva Learning &rarr; ODSP Storage</div>
       </div>
       <div class="bento-card b-stat2 reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
         <div class="stat-number">4</div>
         <div class="stat-label">Languages Spoken</div>
-        <div class="stat-sub">English · Hindi · Tamil · Sanskrit</div>
+        <div class="stat-sub">English &middot; Hindi &middot; Tamil &middot; Sanskrit</div>
       </div>
 
-      <!-- Philosophy cards -->
+      <!-- Philosophy cards — tightened, no emojis, SVG icons -->
       <div class="bento-card b-third reveal rd1">
-        <div class="bt-icon">⚡</div>
-        <h4>Performance is a Feature</h4>
-        <p>I've optimized boot times, file open latency, and rendering pipelines where milliseconds matter across millions of devices. That discipline carries into everything I build.</p>
+        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <h4>Milliseconds Matter</h4>
+        <p>Boot times, file open latency, rendering pipelines. When your code runs on millions of devices, you learn that performance isn't an optimization — it's the product.</p>
       </div>
       <div class="bento-card b-third reveal rd2">
-        <div class="bt-icon">🌐</div>
-        <h4>Ship to Learn</h4>
-        <p>Launching Office Mobile in China with a small team, then scaling worldwide — you learn the most when real users push on your systems in ways you never predicted.</p>
+        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
+        <h4>Ship, Then Scale</h4>
+        <p>Office Mobile launched in China with a small team before going worldwide. The best architecture emerges from real users pushing on real systems, not from design documents.</p>
       </div>
       <div class="bento-card b-third reveal rd3">
-        <div class="bt-icon">🔬</div>
-        <h4>Depth Creates Range</h4>
-        <p>Debugging C++ crashes at the native layer gave me intuition I use when designing cloud migration pipelines today. Real technical depth is what creates genuine breadth.</p>
+        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/><path d="M9 12h6"/></svg></div>
+        <h4>Depth Builds Range</h4>
+        <p>Debugging C++ crashes at the native layer gave me intuition I use designing cloud migration pipelines. Every layer of the stack teaches you something the others can't.</p>
       </div>
 
       <!-- Career arc bar -->
       <div class="bento-card b-wide reveal">
         <div class="b-label">Career Arc</div>
-        <div style="display:flex;justify-content:space-between;font-size:.7rem;color:var(--text3);margin-bottom:.3rem;flex-wrap:wrap;gap:.5rem">
-          <span>Android Native → Office Mobile → Viva Learning → ODSP Storage</span>
-          <span>IC Engineer → Engineering Manager → Principal EM</span>
+        <div style="display:flex;justify-content:space-between;font-size:.65rem;color:var(--text3);margin-bottom:.4rem;flex-wrap:wrap;gap:.5rem;letter-spacing:.02em">
+          <span>Android Native &rarr; Office Mobile &rarr; Viva Learning &rarr; ODSP Storage</span>
+          <span>IC &rarr; EM &rarr; Principal EM</span>
         </div>
         <div class="journey-bar">
-          <div class="journey-seg" style="height:50%;background:var(--blue)"><span class="jt">Word/Excel/PPT Android · C++ &amp; Java</span></div>
-          <div class="journey-seg" style="height:55%;background:var(--blue)"><span class="jt">Performance &amp; Reliability</span></div>
-          <div class="journey-seg" style="height:58%;background:var(--blue)"><span class="jt">Print, Licensing, File I/O</span></div>
-          <div class="journey-seg" style="height:64%;background:linear-gradient(var(--blue),var(--purple))"><span class="jt">Office Mobile · Code Unification</span></div>
-          <div class="journey-seg" style="height:70%;background:var(--purple)"><span class="jt">Office Mobile · China Launch</span></div>
-          <div class="journey-seg" style="height:76%;background:var(--purple)"><span class="jt">Office Mobile · Worldwide Rollout</span></div>
-          <div class="journey-seg" style="height:82%;background:linear-gradient(var(--purple),var(--rose))"><span class="jt">Viva Learning · 0 to 1</span></div>
-          <div class="journey-seg" style="height:86%;background:var(--rose)"><span class="jt">Viva Learning · React / Full Stack</span></div>
-          <div class="journey-seg" style="height:90%;background:linear-gradient(var(--rose),var(--cyan))"><span class="jt">ODSP · Storage Engineering</span></div>
-          <div class="journey-seg" style="height:94%;background:var(--cyan)"><span class="jt">ODSP · Data Migration Pipelines</span></div>
-          <div class="journey-seg" style="height:97%;background:var(--cyan)"><span class="jt">ODSP · Enterprise Governance</span></div>
-          <div class="journey-seg" style="height:100%;background:linear-gradient(var(--cyan),var(--amber))"><span class="jt">Present · Principal EM</span></div>
+          <div class="journey-seg" style="height:50%;background:var(--ice)"><span class="jt">Word/Excel/PPT Android &middot; C++ & Java</span></div>
+          <div class="journey-seg" style="height:55%;background:var(--ice)"><span class="jt">Performance & Reliability</span></div>
+          <div class="journey-seg" style="height:58%;background:var(--ice)"><span class="jt">Print, Licensing, File I/O</span></div>
+          <div class="journey-seg" style="height:64%;background:linear-gradient(var(--ice),var(--sage))"><span class="jt">Office Mobile &middot; Code Unification</span></div>
+          <div class="journey-seg" style="height:70%;background:var(--sage)"><span class="jt">Office Mobile &middot; China Launch</span></div>
+          <div class="journey-seg" style="height:76%;background:var(--sage)"><span class="jt">Office Mobile &middot; Worldwide Rollout</span></div>
+          <div class="journey-seg" style="height:82%;background:linear-gradient(var(--sage),var(--accent))"><span class="jt">Viva Learning &middot; 0 to 1</span></div>
+          <div class="journey-seg" style="height:86%;background:var(--accent)"><span class="jt">Viva Learning &middot; React / Full Stack</span></div>
+          <div class="journey-seg" style="height:90%;background:linear-gradient(var(--accent),var(--ice))"><span class="jt">ODSP &middot; Storage Engineering</span></div>
+          <div class="journey-seg" style="height:94%;background:var(--ice)"><span class="jt">ODSP &middot; Data Migration Pipelines</span></div>
+          <div class="journey-seg" style="height:97%;background:var(--ice)"><span class="jt">ODSP &middot; Enterprise Governance</span></div>
+          <div class="journey-seg" style="height:100%;background:linear-gradient(var(--ice),var(--accent))"><span class="jt">Present &middot; Principal EM</span></div>
         </div>
       </div>
     </div>
@@ -409,8 +423,8 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
       <div class="career-item">
         <div class="c-period"><span class="c-now">Current</span>Principal EM</div>
         <div class="c-body">
-          <h3>ODSP Storage — OneDrive &amp; SharePoint</h3>
-          <div class="c-company">Microsoft · Hyderabad, India</div>
+          <h3>ODSP Storage — OneDrive & SharePoint</h3>
+          <div class="c-company">Microsoft &middot; Hyderabad, India</div>
           <p>Leading the storage engineering team responsible for blob storage at enterprise scale. Designing and building critical data migration scenarios and pipelines for secure, governed, enterprise customers. The infrastructure layer that underpins collaboration for OneDrive and SharePoint users worldwide.</p>
         </div>
         <div class="c-tags">
@@ -441,8 +455,8 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
         <div class="c-period">Office Mobile</div>
         <div class="c-body">
           <h3>Office Mobile — App Unification</h3>
-          <div class="c-company">Microsoft Office · Android</div>
-          <p>Worked on the engineering effort to combine the separate codebases of Word, Excel, and PowerPoint into a single unified Office Mobile app. Launched first in China with a lean team, proved viability, then expanded with a larger team for worldwide deployment. A real-world lesson in code convergence, shared architecture, and shipping at global scale.</p>
+          <div class="c-company">Microsoft Office &middot; Android</div>
+          <p>Worked on the engineering effort to combine the separate codebases of Word, Excel, and PowerPoint into a single unified Office Mobile app. Launched first in China with a lean team, proved viability, then expanded with a larger team for worldwide deployment.</p>
         </div>
         <div class="c-tags">
           <span class="c-tag">code-unification</span>
@@ -456,8 +470,8 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
         <div class="c-period">Foundation</div>
         <div class="c-body">
           <h3>Word, Excel, PowerPoint for Android</h3>
-          <div class="c-company">Microsoft Office · Android</div>
-          <p>Wrote shared Java and C++ code running across Word, Excel, and PowerPoint on Android. High-performance native compute, multi-threaded rendering, File I/O, print subsystems, licensing, debugging native C++ codepaths, and performance engineering for boot time and file open scenarios. Reliability work across critical paths used by millions daily.</p>
+          <div class="c-company">Microsoft Office &middot; Android</div>
+          <p>Wrote shared Java and C++ code running across Word, Excel, and PowerPoint on Android. High-performance native compute, multi-threaded rendering, File I/O, print subsystems, licensing, and performance engineering for boot time and file open scenarios.</p>
         </div>
         <div class="c-tags">
           <span class="c-tag">c++</span>
@@ -475,7 +489,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
         <div class="c-body">
           <h3>Research Intern</h3>
           <div class="c-company">Birla Institute of Technology and Science</div>
-          <p>Research work in computer science, including graph theory and social network analysis. Built a project on centrality in social networks, applying machine learning concepts to identify influential nodes in network structures.</p>
+          <p>Research in graph theory and social network analysis. Built centrality models for identifying influential nodes in network structures, applying machine learning to graph problems.</p>
         </div>
         <div class="c-tags">
           <span class="c-tag">research</span>
@@ -496,37 +510,37 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 
     <div class="skills-wrapper reveal rd3">
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--blue)"></span> Systems &amp; Languages</h4>
+        <h4><span class="sg-dot" style="background:var(--ice)"></span> Systems & Languages</h4>
         <div class="skill-pills">
           <span class="sp">C++</span><span class="sp">C#</span><span class="sp">Java</span><span class="sp">Python</span><span class="sp">TypeScript</span><span class="sp">JavaScript</span><span class="sp">SQL</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--purple)"></span> Frontend &amp; Web</h4>
+        <h4><span class="sg-dot" style="background:var(--accent)"></span> Frontend & Web</h4>
         <div class="skill-pills">
           <span class="sp">React</span><span class="sp">Vue.js</span><span class="sp">Angular</span><span class="sp">Next.js</span><span class="sp">Astro</span><span class="sp">Tailwind CSS</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--cyan)"></span> Cloud &amp; Infrastructure</h4>
+        <h4><span class="sg-dot" style="background:var(--ice)"></span> Cloud & Infrastructure</h4>
         <div class="skill-pills">
           <span class="sp">Azure</span><span class="sp">Blob Storage</span><span class="sp">Docker</span><span class="sp">Kubernetes</span><span class="sp">CI/CD</span><span class="sp">Data Pipelines</span><span class="sp">Distributed Systems</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--rose)"></span> Mobile &amp; Native</h4>
+        <h4><span class="sg-dot" style="background:var(--sage)"></span> Mobile & Native</h4>
         <div class="skill-pills">
           <span class="sp">Android SDK</span><span class="sp">NDK / JNI</span><span class="sp">Native C++</span><span class="sp">Multi-Threading</span><span class="sp">File I/O</span><span class="sp">Performance Tuning</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--amber)"></span> AI &amp; Emerging</h4>
+        <h4><span class="sg-dot" style="background:var(--accent)"></span> AI & Emerging</h4>
         <div class="skill-pills">
           <span class="sp">LLMs / GPT</span><span class="sp">TensorFlow.js</span><span class="sp">AI Agents</span><span class="sp">Multi-Model Systems</span><span class="sp">Prompt Engineering</span>
         </div>
       </div>
       <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--green)"></span> Engineering Leadership</h4>
+        <h4><span class="sg-dot" style="background:var(--sage)"></span> Engineering Leadership</h4>
         <div class="skill-pills">
           <span class="sp">System Design</span><span class="sp">Team Building</span><span class="sp">Enterprise Security</span><span class="sp">Compliance</span><span class="sp">Reliability</span><span class="sp">0-to-1 Products</span><span class="sp">Performance Eng</span>
         </div>
@@ -538,7 +552,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 <!-- Projects -->
 <section id="projects" style="background:var(--surface)">
   <div class="container">
-    <div class="stag reveal">Open Source &amp; Side Projects</div>
+    <div class="stag reveal">Open Source & Side Projects</div>
     <h2 class="stitle reveal rd1">Building <em>beyond</em> the day job</h2>
     <p class="sdesc reveal rd2">AI experiments, fitness apps, open source contributions, and technical exploration.</p>
 
@@ -546,42 +560,42 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
       <a href="https://github.com/arjith/llm-council" target="_blank" class="proj reveal">
         <div>
           <h3>LLM Council <span class="proj-badge ai">AI</span></h3>
-          <p>A multi-model AI consensus framework exploring how multiple LLMs can debate, vote, and self-correct to converge on higher-quality outputs. Inspired by the idea that collaborative deliberation between models can exceed any single model's capability.</p>
+          <p>A multi-model AI consensus framework exploring how multiple LLMs can debate, vote, and self-correct to converge on higher-quality outputs.</p>
           <div class="proj-stack"><span>TypeScript</span><span>AI/ML</span><span>Multi-Agent</span></div>
         </div>
-        <span class="proj-arrow">→</span>
+        <span class="proj-arrow">&rarr;</span>
       </a>
       <a href="https://github.com/arjith/vibefit" target="_blank" class="proj reveal rd1">
         <div>
           <h3>VibeFit <span class="proj-badge app">App</span></h3>
-          <p>AI-powered fitness companion featuring 64 exercises, personalized routines, and smart progress tracking. Full-stack application with TensorFlow.js driving intelligent workout recommendations.</p>
+          <p>AI-powered fitness companion with 64 exercises, personalized routines, and TensorFlow.js driving intelligent workout recommendations.</p>
           <div class="proj-stack"><span>React</span><span>Express</span><span>PostgreSQL</span><span>TensorFlow.js</span></div>
         </div>
-        <span class="proj-arrow">→</span>
+        <span class="proj-arrow">&rarr;</span>
       </a>
       <a href="https://github.com/arjith/gymverse" target="_blank" class="proj reveal rd2">
         <div>
           <h3>GymVerse <span class="proj-badge app">App</span></h3>
-          <p>Full-stack fitness application with 60+ exercises (with alternates) and 35+ cardio activities. Clean TypeScript architecture with intuitive routine building and workout tracking.</p>
+          <p>Full-stack fitness application with 60+ exercises and 35+ cardio activities. Clean TypeScript architecture with routine building and tracking.</p>
           <div class="proj-stack"><span>TypeScript</span><span>React</span><span>Express</span></div>
         </div>
-        <span class="proj-arrow">→</span>
+        <span class="proj-arrow">&rarr;</span>
       </a>
       <a href="https://github.com/arjith/magentic-ui" target="_blank" class="proj reveal rd3">
         <div>
           <h3>Magentic UI <span class="proj-badge fork">Fork</span></h3>
-          <p>Exploring Microsoft Research's human-centered AI web agent prototype. Experimenting with autonomous web interaction, AI-driven navigation, and the future of how users interact with interfaces.</p>
+          <p>Exploring Microsoft Research's human-centered AI web agent prototype. Autonomous web interaction and AI-driven navigation.</p>
           <div class="proj-stack"><span>Python</span><span>AI Agents</span><span>MSR</span></div>
         </div>
-        <span class="proj-arrow">→</span>
+        <span class="proj-arrow">&rarr;</span>
       </a>
       <a href="https://github.com/arjith/jellyfin" target="_blank" class="proj reveal rd4">
         <div>
           <h3>Jellyfin <span class="proj-badge oss">OSS</span></h3>
-          <p>Contributing to the free software media system — server backend and API development in C# and .NET. Building the open-source alternative to proprietary media solutions.</p>
+          <p>Contributing to the free software media system — server backend and API development in C# and .NET.</p>
           <div class="proj-stack"><span>C#</span><span>.NET</span><span>Open Source</span></div>
         </div>
-        <span class="proj-arrow">→</span>
+        <span class="proj-arrow">&rarr;</span>
       </a>
     </div>
   </div>
@@ -595,20 +609,20 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 
     <div class="edu-grid reveal rd2">
       <div class="edu-card">
-        <div class="edu-icon">🎓</div>
+        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
         <h3>National Institute of Technology, Tiruchirappalli</h3>
-        <div class="edu-degree">B.Tech, Computer Science &amp; Engineering</div>
-        <p>One of India's premier engineering institutions (NIT Trichy). Studied computer science with depth in algorithms, systems, and applied mathematics.</p>
+        <div class="edu-degree">B.Tech, Computer Science & Engineering</div>
+        <p>One of India's premier engineering institutions. Depth in algorithms, systems, and applied mathematics.</p>
         <div class="edu-extra">
-          <span>Rotaract Club of NIT Rock City</span>
+          <span>Rotaract Club</span>
           <span>Social Network Analysis Research</span>
         </div>
       </div>
       <div class="edu-card">
-        <div class="edu-icon">📚</div>
+        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
         <h3>Bala Vidya Mandir</h3>
         <div class="edu-degree">Computer Science</div>
-        <p>Foundation in computer science and analytical thinking that laid the groundwork for an engineering career.</p>
+        <p>Foundation in computer science and analytical thinking.</p>
       </div>
     </div>
   </div>
@@ -621,18 +635,18 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
       <div class="contact-left reveal">
         <div class="stag">Contact</div>
         <h2>Let's have a <em>conversation</em></h2>
-        <p>Engineering leadership, enterprise systems, building products from zero, AI and infrastructure, or just a good technical conversation. Always happy to connect.</p>
+        <p>Engineering leadership, enterprise systems, building products from zero, or just a good technical conversation. Always happy to connect.</p>
         <div class="c-links">
           <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" target="_blank" class="c-link">
-            <div class="cl-i">in</div>
+            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
             <div><div class="cl-t">LinkedIn</div><div class="cl-s">Arjith Retna Srikanth</div></div>
           </a>
           <a href="https://github.com/arjith" target="_blank" class="c-link">
-            <div class="cl-i">✱</div>
+            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
             <div><div class="cl-t">GitHub</div><div class="cl-s">github.com/arjith</div></div>
           </a>
           <a href="mailto:arjithonline@gmail.com" class="c-link">
-            <div class="cl-i">@</div>
+            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
             <div><div class="cl-t">Email</div><div class="cl-s">arjithonline@gmail.com</div></div>
           </a>
         </div>
@@ -651,7 +665,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
           <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">cat role.txt</span></div>
           <div class="ct-line">Principal Engineering Manager</div>
           <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">echo $ORG</span></div>
-          <div class="ct-line">Microsoft — ODSP Storage</div>
+          <div class="ct-line">Microsoft &mdash; ODSP Storage</div>
           <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">echo $LOCATION</span></div>
           <div class="ct-line">Hyderabad, India</div>
           <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">cat languages.txt</span></div>
@@ -666,7 +680,7 @@ footer{padding:2rem clamp(1rem,4vw,3rem);border-top:1px solid var(--border)}
 <!-- Footer -->
 <footer>
   <div class="footer-inner">
-    <div class="f-left">© 2026 Arjith Retna Srikanth</div>
+    <div class="f-left">&copy; 2026 Arjith Retna Srikanth</div>
     <div class="f-right">
       <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" target="_blank">LinkedIn</a>
       <a href="https://github.com/arjith" target="_blank">GitHub</a>
@@ -691,7 +705,7 @@ document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',(
 const glow=document.getElementById('cursorGlow');
 let gx=0,gy=0,cx=0,cy=0;
 document.addEventListener('mousemove',e=>{gx=e.clientX;gy=e.clientY});
-(function loop(){cx+=(gx-cx)*.07;cy+=(gy-cy)*.07;glow.style.left=cx+'px';glow.style.top=cy+'px';requestAnimationFrame(loop)})();
+(function loop(){cx+=(gx-cx)*.06;cy+=(gy-cy)*.06;glow.style.left=cx+'px';glow.style.top=cy+'px';requestAnimationFrame(loop)})();
 
 // Bento hover radial
 document.querySelectorAll('.bento-card').forEach(c=>{
@@ -702,15 +716,24 @@ document.querySelectorAll('.bento-card').forEach(c=>{
   });
 });
 
-// Hero lines
+// Hero grid lines
 (function(){
-  const c=document.getElementById('heroLines');
+  const g=document.getElementById('heroGrid');
+  // Vertical lines
   for(let i=0;i<8;i++){
     const l=document.createElement('div');
     l.className='hero-line';
-    l.style.left=(10+i*11.5)+'%';
-    l.style.opacity=(.1+Math.random()*.25).toFixed(2);
-    c.appendChild(l);
+    l.style.left=(8+i*12)+'%';
+    l.style.opacity=(.08+Math.random()*.12).toFixed(2);
+    g.appendChild(l);
+  }
+  // Horizontal lines
+  for(let i=0;i<5;i++){
+    const l=document.createElement('div');
+    l.className='hero-hline';
+    l.style.top=(15+i*18)+'%';
+    l.style.opacity=(.05+Math.random()*.08).toFixed(2);
+    g.appendChild(l);
   }
 })();
 
@@ -730,5 +753,5 @@ document.querySelectorAll('a[href^="#"]').forEach(a=>{
 });
 </script>
 
-
-</body></html>
+</body>
+</html>
