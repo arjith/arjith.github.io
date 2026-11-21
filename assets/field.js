@@ -1,4 +1,27 @@
 (() => {
+  if (!document.querySelector("[data-effect]")) return;
+  const motionPreference = matchMedia("(prefers-reduced-motion: reduce)");
+  let motionPaused = false;
+  try { motionPaused = sessionStorage.getItem("portfolio-motion") === "paused"; }
+  catch (error) { console.warn("Motion preference storage unavailable:", error); }
+  const motionControl = document.createElement("button");
+  motionControl.type = "button";
+  motionControl.className = "motion-toggle";
+  function updateMotionControl() {
+    motionControl.disabled = motionPreference.matches;
+    motionControl.textContent = motionPreference.matches ? "Reduced motion" : motionPaused ? "Resume motion" : "Pause motion";
+    motionControl.setAttribute("aria-pressed", String(motionPaused || motionPreference.matches));
+  }
+  motionControl.addEventListener("click", () => {
+    motionPaused = !motionPaused;
+    try { sessionStorage.setItem("portfolio-motion", motionPaused ? "paused" : "running"); }
+    catch (error) { console.warn("Motion preference could not be saved:", error); }
+    updateMotionControl();
+    document.dispatchEvent(new Event("motionchange"));
+  });
+  motionPreference.addEventListener("change", updateMotionControl);
+  updateMotionControl();
+  document.body.append(motionControl);
   const noise = `
     float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
     float noise(vec2 p){
@@ -91,11 +114,15 @@
     if (!gl) { console.info("WebGL2 unavailable; keeping static artwork."); continue; }
     host.prepend(canvas);
     const reduce = matchMedia("(prefers-reduced-motion: reduce)");
-    let program, uniforms, raf = 0, visible = false, lost = false, last = 0;
+    let program = null, buffer = null, uniforms, raf = 0;
+    let visible = false, lost = false, suspended = false, last = 0;
+    const events = new AbortController();
+    const eventOptions = { signal: events.signal };
     let mouse = [.5, .5], target = [.5, .5];
     const start = performance.now();
     function compile(type, source) {
       const shader = gl.createShader(type);
+      if (!shader) { console.error("Visual shader allocation failed."); return null; }
       gl.shaderSource(shader, source);
       gl.compileShader(shader);
       if (!gl.getShaderParameter(shader, gl.COMPILE_STATUS)) {
@@ -105,22 +132,40 @@
       }
       return shader;
     }
+    function releaseGPU() {
+      gl.useProgram(null);
+      gl.bindBuffer(gl.ARRAY_BUFFER, null);
+      if (buffer) gl.deleteBuffer(buffer);
+      if (program) gl.deleteProgram(program);
+      buffer = program = null;
+      uniforms = null;
+    }
     function init() {
+      releaseGPU();
       const vertex = compile(gl.VERTEX_SHADER, "#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}");
+      if (!vertex) return false;
       const fragment = compile(gl.FRAGMENT_SHADER, `#version 300 es
         precision highp float;uniform vec2 uRes,uMouse;uniform float uTime,uDark;out vec4 o;
         ${source}`);
-      if (!vertex || !fragment) return false;
+      if (!fragment) { gl.deleteShader(vertex); return false; }
       program = gl.createProgram();
+      if (!program) {
+        console.error("Visual program allocation failed.");
+        gl.deleteShader(vertex); gl.deleteShader(fragment);
+        return false;
+      }
       gl.attachShader(program, vertex); gl.attachShader(program, fragment);
       gl.linkProgram(program);
+      gl.detachShader(program, vertex); gl.detachShader(program, fragment);
       gl.deleteShader(vertex); gl.deleteShader(fragment);
       if (!gl.getProgramParameter(program, gl.LINK_STATUS)) {
         console.error("Visual shader linking failed:", gl.getProgramInfoLog(program));
+        releaseGPU();
         return false;
       }
       gl.useProgram(program);
-      const buffer = gl.createBuffer();
+      buffer = gl.createBuffer();
+      if (!buffer) { console.error("Visual buffer allocation failed."); releaseGPU(); return false; }
       gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
       gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1, -1, 3, -1, -1, 3]), gl.STATIC_DRAW);
       const position = gl.getAttribLocation(program, "p");
@@ -130,52 +175,75 @@
       return true;
     }
     function draw(now) {
-      if (lost) return;
-      const dpr = Math.min(devicePixelRatio || 1, 1.5);
-      const width = Math.max(1, Math.round(host.clientWidth * dpr));
-      const height = Math.max(1, Math.round(host.clientHeight * dpr));
+      if (lost || suspended || !program) return;
+      const pixels = Math.max(1, host.clientWidth * host.clientHeight);
+      const dpr = Math.min(devicePixelRatio || 1, 1.25, Math.sqrt(1600000 / pixels));
+      const width = Math.max(1, Math.floor(host.clientWidth * dpr));
+      const height = Math.max(1, Math.floor(host.clientHeight * dpr));
       if (canvas.width !== width || canvas.height !== height) { canvas.width = width; canvas.height = height; }
       mouse = mouse.map((value, index) => value + (target[index] - value) * .08);
       gl.viewport(0, 0, width, height);
       gl.uniform2f(uniforms[0], width, height);
-      gl.uniform1f(uniforms[1], reduce.matches ? 12 : (now - start) / 1000);
+      gl.uniform1f(uniforms[1], reduce.matches || motionPaused ? 12 : (now - start) / 1000);
       gl.uniform2f(uniforms[2], mouse[0], mouse[1]);
       gl.uniform1f(uniforms[3], document.documentElement.dataset.theme === "dark" ? 1 : 0);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
     function loop(now) {
       raf = 0;
-      if (!visible || document.hidden || reduce.matches || lost) return;
-      if (now - last >= 33) { draw(now); last = now; }
+      if (!visible || document.hidden || reduce.matches || motionPaused || lost || suspended || !program) return;
+      if (now - last >= 50) { draw(now); last = now; }
       raf = requestAnimationFrame(loop);
     }
     function kick() {
       cancelAnimationFrame(raf); raf = 0;
-      if (lost || !visible || document.hidden) return;
-      if (reduce.matches) draw(performance.now());
+      if (lost || suspended || !program || !visible || document.hidden) return;
+      if (reduce.matches || motionPaused) draw(performance.now());
       else raf = requestAnimationFrame(loop);
     }
-    if (!init()) { canvas.remove(); continue; }
+    if (!init()) { releaseGPU(); canvas.remove(); continue; }
     draw(performance.now()); host.classList.add("ready");
-    new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; kick(); }).observe(host);
-    new ResizeObserver(() => { if (!lost) draw(performance.now()); }).observe(host);
+    const visibilityObserver = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; kick(); });
+    const sizeObserver = new ResizeObserver(() => draw(performance.now()));
+    visibilityObserver.observe(host);
+    sizeObserver.observe(host);
     const pointerSurface = host.closest(".home") ? document : host;
     pointerSurface.addEventListener("pointermove", event => {
-      if (reduce.matches) return;
+      if (reduce.matches || motionPaused) return;
       const rect = host.getBoundingClientRect();
       target = [(event.clientX - rect.left) / rect.width, 1 - (event.clientY - rect.top) / rect.height];
-    });
-    pointerSurface.addEventListener("pointerleave", () => { target = [.5, .5]; });
-    document.addEventListener("visibilitychange", kick);
-    reduce.addEventListener("change", () => { mouse = target = [.5, .5]; kick(); });
-    document.addEventListener("themechange", () => { if (!lost) draw(performance.now()); });
+    }, eventOptions);
+    pointerSurface.addEventListener("pointerleave", () => { target = [.5, .5]; }, eventOptions);
+    document.addEventListener("visibilitychange", kick, eventOptions);
+    reduce.addEventListener("change", () => { mouse = target = [.5, .5]; kick(); }, eventOptions);
+    document.addEventListener("themechange", () => draw(performance.now()), eventOptions);
+    document.addEventListener("motionchange", () => { mouse = target = [.5, .5]; kick(); }, eventOptions);
     canvas.addEventListener("webglcontextlost", event => {
       event.preventDefault(); lost = true; cancelAnimationFrame(raf); raf = 0; host.classList.remove("ready");
-    });
+    }, eventOptions);
     canvas.addEventListener("webglcontextrestored", () => {
       lost = false;
+      if (suspended) return;
       if (init()) { draw(performance.now()); host.classList.add("ready"); kick(); }
       else { lost = true; host.classList.remove("ready"); }
-    });
+    }, eventOptions);
+    addEventListener("pagehide", event => {
+      suspended = true;
+      cancelAnimationFrame(raf); raf = 0;
+      visibilityObserver.disconnect();
+      sizeObserver.disconnect();
+      releaseGPU();
+      canvas.width = canvas.height = 1;
+      host.classList.remove("ready");
+      if (!event.persisted) events.abort();
+    }, eventOptions);
+    addEventListener("pageshow", () => {
+      if (!suspended) return;
+      suspended = false;
+      if (!lost && init()) { draw(performance.now()); host.classList.add("ready"); }
+      visibilityObserver.observe(host);
+      sizeObserver.observe(host);
+      kick();
+    }, eventOptions);
   }
 })();

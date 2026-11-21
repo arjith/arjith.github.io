@@ -19,6 +19,14 @@
   font: 500 11px var(--font-mono); color: var(--text);
   background: var(--pane); border: 1px solid var(--line); border-radius: 4px;
 }
+.motion-toggle {
+  position: fixed; z-index: 6; right: 1rem; bottom: 1rem;
+  padding: .5rem .75rem; font: 500 11px var(--font-mono);
+  color: var(--text); background: var(--pane);
+  border: 1px solid var(--line-strong); border-radius: 4px;
+  cursor: pointer;
+}
+.motion-toggle:disabled { cursor: default; color: var(--text-2); }
 html[data-theme="dark"] {
   color-scheme: dark; --bg: #0c1014; --pane: #14191e; --pane-2: #1c232a;
   --line: #343b41; --line-strong: #626a72; --text: #ebece8;
@@ -74,7 +82,7 @@ h1 { font: 400 clamp(3rem, 6vw, 6rem)/1.04 var(--font-serif); letter-spacing: -.
   content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(90deg, rgba(var(--paper-rgb), .98) 0%, rgba(var(--paper-rgb), .94) 34%, rgba(var(--paper-rgb), .5) 54%, rgba(var(--paper-rgb), .05) 80%);
 }
-.hero .visual-field .caption { left: auto; right: 1rem; color: var(--text-2); padding: .35rem .5rem; background: rgba(var(--paper-rgb), .92); }
+.hero .visual-field .caption { left: auto; right: 1rem; bottom: 3.75rem; color: var(--text-2); padding: .35rem .5rem; background: rgba(var(--paper-rgb), .92); }
 .home .wrap > section:not(.hero) {
   max-width: 70rem; margin-inline: auto; padding-inline: 5vw;
   background: rgba(var(--paper-rgb), .96);
