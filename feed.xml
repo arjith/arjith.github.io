@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Arjith Retna Srikanth · Updates</title>
+  <link href="https://arjith.github.io/updates/"/>
+  <link rel="self" href="https://arjith.github.io/feed.xml"/>
+  <id>https://arjith.github.io/updates/</id>
+  <updated>2026-11-21T00:00:00Z</updated>
+  <author><name>Arjith Retna Srikanth</name></author>
+  <entry>
+    <title>Rebuilt this site</title>
+    <link href="https://arjith.github.io/updates/"/>
+    <id>https://arjith.github.io/updates/#2026-11-21-site</id>
+    <updated>2026-11-21T00:00:00Z</updated>
+    <summary>Interactive artwork and separate projects, updates and about pages. Forks are listed separately from my own work.</summary>
+  </entry>
+  <entry>
+    <title>Copilot Kubuntu Desktop Kit v0.1.0</title>
+    <link href="https://github.com/arjith/copilot-kubuntu-desktop-kit/releases/tag/v0.1.0"/>
+    <id>https://arjith.github.io/updates/#2026-11-15-kit-v0.1.0</id>
+    <updated>2026-11-15T18:30:11Z</updated>
+    <summary>First experimental preview, tested on one KDE Wayland setup. Compatibility reports welcome.</summary>
+  </entry>
+  <entry>
+    <title>Published VibeFit and GymVerse</title>
+    <link href="https://github.com/arjith/vibefit"/>
+    <id>https://arjith.github.io/updates/#2026-02-21-fitness</id>
+    <updated>2026-02-21T00:00:00Z</updated>
+    <summary>Two fitness app experiments.</summary>
+  </entry>
+  <entry>
+    <title>Published LLM Council</title>
+    <link href="https://github.com/arjith/llm-council"/>
+    <id>https://arjith.github.io/updates/#2026-01-10-llm-council</id>
+    <updated>2026-01-10T00:00:00Z</updated>
+    <summary>A multi-model consensus experiment.</summary>
+  </entry>
+</feed>
