@@ -11,15 +11,22 @@ public/
   updates/index.html    dated log of releases and changes
   about/index.html      background, experience, education, contact
   feed.xml              Atom feed mirroring the updates page
-  assets/site.css       shared styles (light and dark follow the OS setting)
-  assets/field.js       WebGL2 hero background; skipped if unsupported,
-                        static under prefers-reduced-motion, paused offscreen
+  assets/site.css       shared layout and components
+  assets/visual.css     halftone home, native projects, strata about, water updates
+  assets/field.js       shared WebGL2 effects; static CSS fallback, reduced-motion
+                        frame, offscreen/hidden pause and context recovery
   404.html, robots.txt, sitemap.xml
 ```
 
 Project sub-sites such as
 [copilot-kubuntu-desktop-kit](https://arjith.github.io/copilot-kubuntu-desktop-kit/)
 are published from their own repositories and linked from `projects/`.
+
+Home and About use a paper palette; Projects and Updates use dark palettes.
+Artwork responds to pointer movement without affecting text or navigation.
+The local prototype comparisons in `public/options/` are untracked design
+references and are not deployed. Contact links lead to LinkedIn and project issue
+trackers until a separate public inbox has been created and verified.
 
 ## Preview locally
 

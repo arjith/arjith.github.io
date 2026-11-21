@@ -4,10 +4,10 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arjith Retna Srikanth</title>
-<meta name="description" content="Engineering manager at Microsoft working on OneDrive and SharePoint storage. Notes and small open-source tools, mostly around AI agents and the Linux desktop.">
+<meta name="description" content="Arjith Retna Srikanth: engineer at Microsoft, with projects and notes on cloud storage, AI agents and the Linux desktop.">
 <link rel="canonical" href="https://arjith.github.io/">
 <meta property="og:title" content="Arjith Retna Srikanth">
-<meta property="og:description" content="Engineering manager at Microsoft working on OneDrive and SharePoint storage. Small open-source tools on the side.">
+<meta property="og:description" content="Projects and notes on cloud storage, AI agents and the Linux desktop.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://arjith.github.io/">
 <meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
@@ -16,13 +16,14 @@
 <link rel="alternate" type="application/atom+xml" title="Updates" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/visual.css">
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Person","name":"Arjith Retna Srikanth","url":"https://arjith.github.io/","jobTitle":"Principal Engineering Manager","worksFor":{"@type":"Organization","name":"Microsoft"},"address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"alumniOf":"National Institute of Technology, Tiruchirappalli","sameAs":["https://github.com/arjith","https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/"]}
 </script>
 </head>
-<body>
+<body class="home">
 <a class="skip" href="#main">Skip to content</a>
 <header class="titlebar">
   <div class="crumbs"><a href="/">arjith</a></div>
@@ -36,25 +37,33 @@
 <main id="main">
   <div class="wrap">
     <section class="hero" aria-labelledby="intro">
-      <div class="hero-field"></div>
-      <p class="meta"><span>Hyderabad, India</span><span>Microsoft</span></p>
-      <h1 id="intro">Arjith Retna Srikanth</h1>
-      <p class="lede">I lead an engineering team working on storage for OneDrive and SharePoint at Microsoft. Before that I wrote native C++ and Java for Office on Android, helped bring Word, Excel and PowerPoint together into one Office Mobile app, and was on the team that started Viva Learning.</p>
-      <p class="lede">Outside work I build small tools, lately around AI agents on the Linux desktop. This site keeps track of them.</p>
-      <div class="links">
-        <a class="btn" href="https://github.com/arjith">GitHub</a>
-        <a class="btn" href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a>
-        <a class="btn" href="mailto:arjithonline@gmail.com">Email</a>
+      <div class="hero-copy">
+        <p class="intro-meta">Engineer
+          <a class="location" href="https://www.openstreetmap.org/search?query=Hyderabad%2C%20India" aria-label="Location: Hyderabad, India"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12S4 16 4 10a8 8 0 1 1 16 0Z"/><circle cx="12" cy="10" r="2.5"/></svg>HYD · IN</a>
+        </p>
+        <h1 id="intro">Arjith Retna <br><em>Srikanth</em></h1>
+        <p class="lede">I'm an engineer at Microsoft. My work has taken me through native apps, the web and cloud storage. Here I share projects and notes on AI agents and the Linux desktop.</p>
+        <div class="links">
+          <a href="/projects/">Explore projects</a>
+          <a href="https://github.com/arjith">GitHub</a>
+          <a href="/about/#contact">Contact</a>
+        </div>
       </div>
+      <div class="visual-field" data-effect="halftone" aria-hidden="true"><span class="caption">01 / halftone · move to explore</span></div>
     </section>
 
-    <section aria-labelledby="work-h">
+    <section class="brief" aria-label="Current and previous work">
+      <div><h2>Currently</h2><p>Principal Engineering Manager in OneDrive and SharePoint Storage at Microsoft.</p></div>
+      <div><h2>Previously</h2><p>Viva Learning's founding team, Office Mobile, and Word, Excel and PowerPoint for Android. <a href="/about/">Background →</a></p></div>
+    </section>
+
+    <section class="selected" aria-labelledby="work-h">
       <div class="section-head"><h2 id="work-h">Selected projects</h2><a href="/projects/">All projects →</a></div>
       <ul class="rows">
         <li class="row">
           <h3><a href="https://arjith.github.io/copilot-kubuntu-desktop-kit/">Copilot Kubuntu Desktop Kit</a></h3>
           <span class="side"><span class="status preview">preview · v0.1.0</span></span>
-          <p>Lets Copilot CLI operate desktop apps on KDE Wayland through an opt-in, pinned backend. The first test is deliberately small: drive KCalc to 19 × 23 and check that 437 appears in the window.</p>
+          <p>An experimental, permission-driven setup for using Copilot CLI with desktop apps on KDE Wayland.</p>
           <div class="tags"><span>Python · KDE · MCP</span><a href="https://arjith.github.io/copilot-kubuntu-desktop-kit/">site</a><a href="https://github.com/arjith/copilot-kubuntu-desktop-kit">source</a><a href="https://github.com/arjith/copilot-kubuntu-desktop-kit/releases/tag/v0.1.0">release notes</a></div>
         </li>
         <li class="row">
@@ -75,28 +84,19 @@
     <section aria-labelledby="updates-h">
       <div class="section-head"><h2 id="updates-h">Recent updates</h2><a href="/updates/">All updates →</a></div>
       <ol class="log">
-        <li><time datetime="2026-11-21">2026-11-21</time><p>Rebuilt this site: plainer, with separate project and update pages.</p></li>
+        <li><time datetime="2026-11-21">2026-11-21</time><p>Rebuilt this site with interactive artwork and separate project, update and background pages.</p></li>
         <li><time datetime="2026-11-15">2026-11-15</time><p>Released <a href="https://github.com/arjith/copilot-kubuntu-desktop-kit/releases/tag/v0.1.0">Copilot Kubuntu Desktop Kit v0.1.0</a> as an experimental preview. <span class="note">Compatibility reports welcome.</span></p></li>
         <li><time datetime="2026-02-21">2026-02-21</time><p>Published VibeFit and GymVerse, two fitness app experiments.</p></li>
       </ol>
     </section>
 
-    <section aria-labelledby="career-h">
-      <div class="section-head"><h2 id="career-h">Work</h2><a href="/about/">More about me →</a></div>
-      <ol class="timeline">
-        <li><span class="when">Now</span><div><h3>OneDrive &amp; SharePoint Storage</h3><p>Principal Engineering Manager. Blob storage, data migration pipelines and governance for enterprise customers.</p></div></li>
-        <li><span class="when">Before</span><div><h3>Microsoft Viva Learning</h3><p>Part of the founding team, from an empty repository to a shipped product.</p></div></li>
-        <li><span class="when">Before</span><div><h3>Office Mobile</h3><p>Combining Word, Excel and PowerPoint for Android into one app; launched in China first, then worldwide.</p></div></li>
-        <li><span class="when">Start</span><div><h3>Word, Excel &amp; PowerPoint for Android</h3><p>Shared C++ and Java: rendering, file I/O, printing, licensing, boot and file-open performance.</p></div></li>
-      </ol>
-    </section>
   </div>
 </main>
 
 <footer>
   <div class="wrap">
     <span>© 2026 Arjith Retna Srikanth</span>
-    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="mailto:arjithonline@gmail.com">Email</a><a href="/feed.xml">Feed</a></nav>
+    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="/about/#contact">Contact</a><a href="/feed.xml">Feed</a></nav>
   </div>
 </footer>
 <script src="/assets/field.js" defer></script>

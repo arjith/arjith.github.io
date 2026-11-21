@@ -14,8 +14,9 @@
 <link rel="alternate" type="application/atom+xml" title="Updates" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&family=IBM+Plex+Serif:ital,wght@0,400;1,400&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/visual.css">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -30,8 +31,15 @@
 
 <main id="main">
   <div class="wrap">
-    <section class="prose">
+    <section class="page-hero">
+      <div class="page-copy">
+      <p class="intro-meta">Background</p>
       <h1>About</h1>
+      <p class="lede">From C++ and Java in Office for Android to Viva Learning and cloud storage at Microsoft.</p>
+      </div>
+      <div class="visual-field" data-effect="strata" aria-hidden="true"><span class="caption" style="color:#cbd6d6">03 / strata · move to explore</span></div>
+    </section>
+    <section class="prose" aria-label="Background">
       <p>I joined Microsoft as an engineer on the Android versions of <strong>Word, Excel and PowerPoint</strong>, writing shared C++ and Java that ran in all three apps. A lot of that work was below the UI: rendering threads, file I/O, printing, licensing, and the time it takes to boot the app and open a file. When something crashed in native code, debugging JNI bridges and C++ stack traces was part of the job.</p>
       <p>Next was <strong>Office Mobile</strong>, an effort to combine the three apps into one. It launched first in China with a small team, earned the case for a larger one, and then shipped worldwide.</p>
       <p>After that I was part of the founding team of <strong>Microsoft Viva Learning</strong>, building it from an empty repository to a shipped product on a React and full-stack architecture.</p>
@@ -70,7 +78,7 @@
 
     <section aria-labelledby="contact">
       <div class="section-head"><h2 id="contact">Contact</h2></div>
-      <p class="prose"><span>Happy to talk about engineering, storage systems, or anything on this site. Email is best: <a href="mailto:arjithonline@gmail.com">arjithonline@gmail.com</a>. I’m also on <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a> and <a href="https://github.com/arjith">GitHub</a>.</span></p>
+      <p class="prose">For a conversation, find me on <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a>. For project questions or compatibility reports, use the issue tracker linked on each <a href="/projects/">project</a>.</p>
       <p class="muted" style="font-size:.9rem">Opinions and projects here are my own and not those of my employer.</p>
     </section>
   </div>
@@ -79,8 +87,9 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Arjith Retna Srikanth</span>
-    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="mailto:arjithonline@gmail.com">Email</a><a href="/feed.xml">Feed</a></nav>
+    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="/about/#contact">Contact</a><a href="/feed.xml">Feed</a></nav>
   </div>
 </footer>
+<script src="/assets/field.js" defer></script>
 </body>
 </html>

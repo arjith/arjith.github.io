@@ -17,9 +17,6 @@
   --ok: #3d7a4f;
   --warn: #9a6b1f;
   --muted-dot: #9a9aa0;
-  --shader-a: 0.18, 0.43, 0.56;
-  --shader-b: 0.96, 0.95, 0.93;
-
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, Consolas, monospace;
   --radius: 6px;
@@ -41,8 +38,6 @@
     --ok: #7fb98d;
     --warn: #d1a65a;
     --muted-dot: #6f727a;
-    --shader-a: 0.50, 0.71, 0.80;
-    --shader-b: 0.055, 0.06, 0.067;
   }
 }
 
@@ -113,19 +108,28 @@ p { margin: 0 0 1rem; }
 .mono { font-family: var(--font-mono); font-size: .86em; }
 
 /* ── Hero with shader field ─────────────────────────── */
-.hero { position: relative; padding: clamp(3rem, 9vw, 5.5rem) 0 2.5rem; }
-.hero { isolation: isolate; }
+.hero { position: relative; padding: clamp(4rem, 10vw, 6.5rem) 0 3rem; }
 .hero-field {
-  position: absolute; top: 0; bottom: 0; left: calc(50% - 50vw); width: 100vw; z-index: -1;
+  position: relative; height: clamp(14rem, 33vw, 19rem); margin: 2rem 0;
+  overflow: hidden; border: 1px solid #30414a; border-radius: var(--radius);
+  background: radial-gradient(ellipse at 60% 45%, #203940, #101c22 70%);
   pointer-events: none;
-  -webkit-mask-image: radial-gradient(ellipse 60% 85% at 92% 8%, #000 0%, rgba(0,0,0,.55) 45%, transparent 75%);
-  mask-image: radial-gradient(ellipse 60% 85% at 92% 8%, #000 0%, rgba(0,0,0,.55) 45%, transparent 75%);
 }
-@media (max-width: 760px) { .hero-field { opacity: .45; } }
-.hero-field canvas { width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
+.hero-field > span {
+  position: absolute; z-index: 1; inset: auto 1rem .85rem;
+  display: flex; justify-content: space-between;
+  color: #b7c8c8; font: 400 10px/1 var(--font-mono);
+  letter-spacing: .08em; text-transform: uppercase;
+}
+.field-fallback { position: absolute; inset: 0; width: 100%; height: 100%; }
+.hero-field.ready .field-fallback { opacity: 0; }
+.hero-field canvas { position: absolute; inset: 0; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s ease; }
 .hero-field canvas.ready { opacity: 1; }
 .hero .meta { font: 400 13px/1.5 var(--font-mono); color: var(--text-3); margin-bottom: 1.25rem; }
 .hero .meta span + span::before { content: "·"; margin: 0 .55rem; color: var(--line-strong); }
+.hero-background, .work-summary { max-width: 40rem; color: var(--text-2); }
+.hero-background { font-size: .95rem; }
+.contact-more { margin: .75rem 0 0; color: var(--text-2); font-size: .86rem; }
 .links { display: flex; flex-wrap: wrap; gap: .5rem; margin-top: 1.5rem; }
 .btn {
   display: inline-flex; align-items: center; gap: .45rem;

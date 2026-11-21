@@ -16,8 +16,9 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
 <link rel="stylesheet" href="/assets/site.css">
+<link rel="stylesheet" href="/assets/visual.css">
 </head>
-<body>
+<body class="native">
 <a class="skip" href="#main">Skip to content</a>
 <header class="titlebar">
   <div class="crumbs"><a href="/">arjith</a><span class="sep">/</span><span>projects</span></div>
@@ -30,10 +31,14 @@
 
 <main id="main">
   <div class="wrap">
-    <section>
+    <section class="page-hero">
+      <div class="page-copy">
+      <p class="intro-meta">~/projects</p>
       <h1>Projects</h1>
-      <p class="lede">Grouped by how much attention each one gets. Status is honest rather than aspirational: most of these are experiments, and the forks are other people's work that I keep for reading or trying changes.</p>
+      <p class="lede">Tools for AI agents and the Linux desktop, alongside a few app experiments. Project sites, source and releases are linked below.</p>
       <p class="muted mono"><span class="status active">maintained</span> &nbsp; <span class="status preview">preview</span> &nbsp; <span class="status">experiment / not maintained</span></p>
+      </div>
+      <div class="visual-field" data-effect="native" aria-hidden="true"><span class="caption">02 / shards · move to explore</span></div>
     </section>
 
     <section aria-labelledby="maintained">
@@ -111,8 +116,9 @@
 <footer>
   <div class="wrap">
     <span>© 2026 Arjith Retna Srikanth</span>
-    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="mailto:arjithonline@gmail.com">Email</a><a href="/feed.xml">Feed</a></nav>
+    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="/about/#contact">Contact</a><a href="/feed.xml">Feed</a></nav>
   </div>
 </footer>
+<script src="/assets/field.js" defer></script>
 </body>
 </html>
