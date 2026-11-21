@@ -34,8 +34,8 @@ GPU resources are explicitly released on page exit and rebuilt on back/forward
 cache restoration. Observers disconnect on exit; listeners are removed when a
 page is not being preserved in the back/forward cache.
 The local prototype comparisons in `public/options/` are untracked design
-references and are not deployed. Contact links lead to LinkedIn and project issue
-trackers until a separate public inbox has been created and verified.
+references and are not deployed. Public contact uses `arjith@tutamail.com`,
+LinkedIn and project issue trackers.
 
 ## Preview locally
 
@@ -80,4 +80,6 @@ requires the account owner's GitHub profile UI.
 
 No analytics service, tracking pixels or outbound click collection are
 installed. Link measurement needs a separate provider and privacy decision.
-The public inbox must be created and verified before adding its address here.
+The separate public inbox has been created. Tuta Free requires a login within
+each six-month period to avoid inactivity deletion. Keep recovery credentials
+outside the repository; never include them in site assets, commits or logs.
