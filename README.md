@@ -13,6 +13,7 @@ public/
   feed.xml              Atom feed mirroring the updates page
   assets/site.css       shared layout and components
   assets/visual.css     halftone home, native projects, strata about, water updates
+  assets/theme.js       system/light/dark preference, persisted across pages
   assets/field.js       shared WebGL2 effects; static CSS fallback, reduced-motion
                         frame, offscreen/hidden pause and context recovery
   404.html, robots.txt, sitemap.xml
@@ -22,7 +23,8 @@ Project sub-sites such as
 [copilot-kubuntu-desktop-kit](https://arjith.github.io/copilot-kubuntu-desktop-kit/)
 are published from their own repositories and linked from `projects/`.
 
-Home and About use a paper palette; Projects and Updates use dark palettes.
+Every page supports system, light and dark themes via the navigation selector.
+Home uses a full-viewport halftone background, with shading behind the text.
 Artwork responds to pointer movement without affecting text or navigation.
 The local prototype comparisons in `public/options/` are untracked design
 references and are not deployed. Contact links lead to LinkedIn and project issue

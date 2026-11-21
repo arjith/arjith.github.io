@@ -22,8 +22,11 @@
         v+=.25*sin(d*40.-uTime*2.)*exp(-d*5.);
         v=smoothstep(.25,.85,v);
         float r=.52*sqrt(v),dotInk=1.-smoothstep(r-.07,r+.07,length(f));
-        vec3 ink=mix(vec3(.09,.10,.11),vec3(.70,.23,.06),smoothstep(.7,1.,v)*.9);
-        o=vec4(mix(vec3(.922,.910,.882),ink,dotInk),1.);
+        vec3 baseInk=mix(vec3(.09,.10,.11),vec3(.64,.73,.76),uDark);
+        vec3 accentInk=mix(vec3(.70,.23,.06),vec3(.92,.43,.23),uDark);
+        vec3 ink=mix(baseInk,accentInk,smoothstep(.7,1.,v)*.9);
+        vec3 paper=mix(vec3(.922,.910,.882),vec3(.035,.043,.052),uDark);
+        o=vec4(mix(paper,ink,dotInk),1.);
       }`,
     strata: `${noise}
       void main(){
@@ -105,7 +108,7 @@
     function init() {
       const vertex = compile(gl.VERTEX_SHADER, "#version 300 es\nin vec2 p;void main(){gl_Position=vec4(p,0.,1.);}");
       const fragment = compile(gl.FRAGMENT_SHADER, `#version 300 es
-        precision highp float;uniform vec2 uRes,uMouse;uniform float uTime;out vec4 o;
+        precision highp float;uniform vec2 uRes,uMouse;uniform float uTime,uDark;out vec4 o;
         ${source}`);
       if (!vertex || !fragment) return false;
       program = gl.createProgram();
@@ -123,7 +126,7 @@
       const position = gl.getAttribLocation(program, "p");
       gl.enableVertexAttribArray(position);
       gl.vertexAttribPointer(position, 2, gl.FLOAT, false, 0, 0);
-      uniforms = ["uRes", "uTime", "uMouse"].map(name => gl.getUniformLocation(program, name));
+      uniforms = ["uRes", "uTime", "uMouse", "uDark"].map(name => gl.getUniformLocation(program, name));
       return true;
     }
     function draw(now) {
@@ -137,6 +140,7 @@
       gl.uniform2f(uniforms[0], width, height);
       gl.uniform1f(uniforms[1], reduce.matches ? 12 : (now - start) / 1000);
       gl.uniform2f(uniforms[2], mouse[0], mouse[1]);
+      gl.uniform1f(uniforms[3], document.documentElement.dataset.theme === "dark" ? 1 : 0);
       gl.drawArrays(gl.TRIANGLES, 0, 3);
     }
     function loop(now) {
@@ -155,14 +159,16 @@
     draw(performance.now()); host.classList.add("ready");
     new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; kick(); }).observe(host);
     new ResizeObserver(() => { if (!lost) draw(performance.now()); }).observe(host);
-    host.addEventListener("pointermove", event => {
+    const pointerSurface = host.closest(".home") ? document : host;
+    pointerSurface.addEventListener("pointermove", event => {
       if (reduce.matches) return;
       const rect = host.getBoundingClientRect();
       target = [(event.clientX - rect.left) / rect.width, 1 - (event.clientY - rect.top) / rect.height];
     });
-    host.addEventListener("pointerleave", () => { target = [.5, .5]; });
+    pointerSurface.addEventListener("pointerleave", () => { target = [.5, .5]; });
     document.addEventListener("visibilitychange", kick);
     reduce.addEventListener("change", () => { mouse = target = [.5, .5]; kick(); });
+    document.addEventListener("themechange", () => { if (!lost) draw(performance.now()); });
     canvas.addEventListener("webglcontextlost", event => {
       event.preventDefault(); lost = true; cancelAnimationFrame(raf); raf = 0; host.classList.remove("ready");
     });
