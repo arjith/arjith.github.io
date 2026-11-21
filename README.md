@@ -1,225 +1,51 @@
-# Arjith Retna Srikanth - Portfolio Website
+# arjith.github.io
 
-[![Lighthouse Score](https://img.shields.io/badge/Lighthouse-100%25-brightgreen)](https://developers.google.com/web/tools/lighthouse/)
-[![Astro](https://img.shields.io/badge/Astro-5.0-orange)](https://astro.build/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-blue)](https://tailwindcss.com/)
-[![React](https://img.shields.io/badge/React-18.2-blue)](https://reactjs.org/)
+Personal site of Arjith Retna Srikanth: <https://arjith.github.io>
 
-> Ultra-fast, SEO-optimized portfolio website for Arjith Retna Srikanth, Senior Software Engineer at Microsoft Hyderabad.
-
-## 🚀 Features
-
-- **⚡ Performance**: 100% Lighthouse scores across all categories
-- **🎨 Modern Design**: Dark theme with gradient accents and smooth animations
-- **📱 Responsive**: Mobile-first approach with perfect cross-device compatibility
-- **🔍 SEO Optimized**: Meta tags, Open Graph, Twitter Cards, and structured data
-- **♿ Accessible**: ARIA attributes, keyboard navigation, and screen reader support
-- **🎭 Interactive**: Framer Motion animations, Lottie graphics, and micro-interactions
-- **📊 Analytics**: Google Analytics and performance monitoring
-- **🛠️ Developer Experience**: TypeScript, ESLint, Prettier, and hot reload
-
-## 🏗️ Architecture
-
-Built with modern web technologies for optimal performance:
-
-- **[Astro 5](https://astro.build/)** - Zero-JS by default, islands architecture
-- **[Tailwind CSS](https://tailwindcss.com/)** - Utility-first styling with custom design system
-- **[React](https://reactjs.org/)** - Interactive components with minimal JavaScript
-- **[Framer Motion](https://framer.com/motion/)** - Smooth animations and transitions
-- **[Lottie Web](https://github.com/airbnb/lottie-web)** - Lightweight vector animations
-
-## 📁 Project Structure
+Plain static HTML and CSS with no build step. Everything served lives in `public/`.
 
 ```
-├── public/
-│   ├── animations/          # Lottie animation files
-│   ├── projects/           # Project screenshots
-│   ├── favicon.svg
-│   └── og-image.jpg
-├── src/
-│   ├── components/
-│   │   ├── react/          # Interactive React components
-│   │   ├── HeroSection.astro
-│   │   ├── AboutSection.astro
-│   │   ├── ProjectsSection.astro
-│   │   ├── SkillsSection.astro
-│   │   ├── ContactSection.astro
-│   │   ├── Navigation.astro
-│   │   └── Footer.astro
-│   ├── data/
-│   │   ├── projects.js     # Project portfolio data
-│   │   └── skills.js       # Skills and certifications
-│   ├── layouts/
-│   │   └── BaseLayout.astro
-│   └── pages/
-│       └── index.astro
-├── astro.config.mjs
-├── tailwind.config.js
-└── package.json
+public/
+  index.html            home: intro, selected projects, recent updates, work
+  projects/index.html   all projects, grouped by status
+  updates/index.html    dated log of releases and changes
+  about/index.html      background, experience, education, contact
+  feed.xml              Atom feed mirroring the updates page
+  assets/site.css       shared styles (light and dark follow the OS setting)
+  assets/field.js       WebGL2 hero background; skipped if unsupported,
+                        static under prefers-reduced-motion, paused offscreen
+  404.html, robots.txt, sitemap.xml
 ```
 
-## 🛠️ Development
+Project sub-sites such as
+[copilot-kubuntu-desktop-kit](https://arjith.github.io/copilot-kubuntu-desktop-kit/)
+are published from their own repositories and linked from `projects/`.
 
-### Prerequisites
-
-- Node.js 18+ 
-- npm or yarn
-
-### Getting Started
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/arjith/arjith.github.io.git
-   cd arjith.github.io
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Start development server**
-   ```bash
-   npm run dev
-   ```
-
-4. **Open your browser**
-   Navigate to `http://localhost:4321`
-
-### Available Scripts
-
-- `npm run dev` - Start development server with hot reload
-- `npm run build` - Build for production
-- `npm run preview` - Preview production build locally
-- `npm run lighthouse` - Run Lighthouse CI audit
-- `npm run check` - Run Astro diagnostics
-- `npm run type-check` - TypeScript type checking
-
-## 🎯 Performance Optimizations
-
-- **Image Optimization**: WebP format with responsive sizing
-- **Font Loading**: Preloaded critical fonts with `font-display: swap`
-- **CSS**: Inline critical styles, minified output
-- **JavaScript**: Minimal client-side JS, component islands
-- **Caching**: Service worker for offline functionality
-- **CDN**: Optimized asset delivery
-
-## 🔧 Configuration
-
-### Environment Variables
-
-Create a `.env` file in the root directory:
+## Preview locally
 
 ```bash
-# Analytics
-GOOGLE_ANALYTICS_ID=G-XXXXXXXXXX
-PLAUSIBLE_DOMAIN=arjith.github.io
-
-# Contact Form (if using external service)
-FORM_ENDPOINT=https://your-form-service.com/submit
-FORM_API_KEY=your-api-key
+python3 -m http.server 8765 --directory public
 ```
 
-### Customization
+Then open <http://127.0.0.1:8765/>.
 
-1. **Personal Information**: Update `src/data/` files with your details
-2. **Styling**: Modify `tailwind.config.js` for design system changes
-3. **SEO**: Update meta tags in `src/layouts/BaseLayout.astro`
-4. **Analytics**: Configure tracking in the base layout
+## Deployment
 
-## 🚀 Deployment
+Pushing to `main` runs both workflows in `.github/workflows/`:
 
-### GitHub Pages (Recommended)
+- `deploy.yml` publishes `public/` to the `gh-pages` branch for GitHub Pages.
+- `azure-static-web-apps-*.yml` uploads `public/` to Azure Static Web Apps.
 
-The site is configured for automatic deployment via GitHub Actions:
+## Publishing a project update
 
-1. **Push to main branch** - Triggers automatic build and deployment
-2. **GitHub Pages** - Serves the built site from `gh-pages` branch
-3. **Custom Domain** - Configure in repository settings if needed
+Releases go out quietly and consistently:
 
-### Manual Deployment
-
-```bash
-# Build for production
-npm run build
-
-# Deploy to any static hosting provider
-# Upload the 'dist/' folder contents
-```
-
-### Lighthouse CI Integration
-
-Automated performance monitoring on every deployment:
-
-```bash
-# Local Lighthouse audit
-npm run lighthouse
-
-# CI will automatically run audits and post results
-```
-
-## 📈 Performance Metrics
-
-Current Lighthouse scores:
-
-- **Performance**: 100
-- **Accessibility**: 100  
-- **Best Practices**: 100
-- **SEO**: 100
-
-Key metrics:
-- First Contentful Paint: < 1.2s
-- Largest Contentful Paint: < 2.5s  
-- Cumulative Layout Shift: < 0.1
-- Time to Interactive: < 3.5s
-
-## 🔒 Security
-
-- Content Security Policy (CSP) headers
-- Subresource Integrity (SRI) for external scripts
-- HTTPS enforcement
-- No sensitive data in client-side code
-
-## 🎨 Design System
-
-### Colors
-- **Primary**: Blue (#3B82F6)
-- **Background**: Dark Gray (#121212)
-- **Surface**: Dark Gray (#1E1E1E)
-- **Text**: Light Gray (#E0E0E0)
-
-### Typography
-- **Headings**: Inter (700, 600, 500)
-- **Body**: Inter (400)
-- **Code**: JetBrains Mono (400, 500)
-
-### Spacing
-- Based on 4px grid system
-- Responsive breakpoints: sm (640px), md (768px), lg (1024px), xl (1280px)
-
-## 🤝 Contributing
-
-While this is a personal portfolio, suggestions and improvements are welcome:
-
-1. Fork the repository
-2. Create a feature branch
-3. Make your changes
-4. Run tests and audits
-5. Submit a pull request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 📞 Contact
-
-**Arjith Retna Srikanth**
-- LinkedIn: [arjith-retna-srikanth-1b8b9967](https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/)
-- Email: arjith.retna@example.com
-- Location: Hyderabad, India
-
----
-
-⭐ If you found this portfolio inspiring, please give it a star!
-
-Built with ❤️ using Astro, React, and Tailwind CSS.
+1. Tag the release in the project repository and write short, factual release
+   notes: what changed, what was tested, known limits.
+2. Update the project's row in `public/projects/index.html` (status, version,
+   date). Use `maintained`, `preview` or `experiment` honestly; list forks only
+   under **Forks**, crediting the upstream project.
+3. Add one dated line to `public/updates/index.html` and a matching `<entry>` in
+   `public/feed.xml` (bump the feed's `<updated>`). Mirror it on the home page's
+   "Recent updates" if it is one of the latest three.
+4. Add new pages to `public/sitemap.xml`.

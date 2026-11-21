@@ -1,757 +1,104 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Arjith Retna Srikanth</title>
-<meta name="description" content="Principal Engineering Manager at Microsoft — ODSP Storage, enterprise-scale data pipelines, and a career spanning native C++ to cloud infrastructure.">
-<meta property="og:title" content="Arjith Retna Srikanth — Engineering Leader at Microsoft">
-<meta property="og:description" content="From native Android code to enterprise cloud storage. Building at the intersection of performance, scale, and reliability.">
+<meta name="description" content="Engineering manager at Microsoft working on OneDrive and SharePoint storage. Notes and small open-source tools, mostly around AI agents and the Linux desktop.">
+<link rel="canonical" href="https://arjith.github.io/">
+<meta property="og:title" content="Arjith Retna Srikanth">
+<meta property="og:description" content="Engineering manager at Microsoft working on OneDrive and SharePoint storage. Small open-source tools on the side.">
 <meta property="og:type" content="website">
-<meta property="og:url" content="https://arjith.github.io">
+<meta property="og:url" content="https://arjith.github.io/">
+<meta name="theme-color" content="#f6f5f2" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#0e0f11" media="(prefers-color-scheme: dark)">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="alternate" type="application/atom+xml" title="Updates" href="/feed.xml">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<style>
-*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{
-  --bg:#08080c;--surface:#0e0e14;--surface2:#15151e;
-  --border:rgba(255,255,255,.06);--border2:rgba(255,255,255,.1);
-  --text:#e8e6e3;--text2:#7a7880;--text3:#4a4850;
-  --accent:#c4a47c;--accent2:#a08060;--accent-glow:rgba(196,164,124,.08);
-  --ice:#88b4cc;--sage:#7c9c80;--warm:#c4a47c;
-}
-html{scroll-behavior:smooth}
-body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);overflow-x:hidden;line-height:1.7;-webkit-font-smoothing:antialiased;font-weight:300}
-::selection{background:rgba(196,164,124,.25);color:#fff}
-::-webkit-scrollbar{width:3px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--text3);border-radius:2px}
-
-/* ═══ CURSOR GLOW ═══ */
-.cursor-glow{position:fixed;width:600px;height:600px;border-radius:50%;pointer-events:none;background:radial-gradient(circle,rgba(196,164,124,.04) 0%,transparent 70%);transform:translate(-50%,-50%);z-index:0;transition:opacity .3s}
-
-/* ═══ GRAIN OVERLAY ═══ */
-.grain{position:fixed;inset:0;pointer-events:none;z-index:9998;opacity:.03;mix-blend-mode:overlay}
-.grain::after{content:'';position:absolute;inset:-200%;width:400%;height:400%;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");animation:grainShift 0.5s steps(1) infinite}
-@keyframes grainShift{0%{transform:translate(0,0)}25%{transform:translate(-5%,-5%)}50%{transform:translate(5%,0)}75%{transform:translate(0,5%)}100%{transform:translate(-5%,5%)}}
-
-/* ═══ LOADER ═══ */
-.loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:flex;align-items:center;justify-content:center;transition:opacity .8s,visibility .8s}
-.loader.done{opacity:0;visibility:hidden;pointer-events:none}
-.loader-bar{width:120px;height:1px;background:var(--border2);overflow:hidden}
-.loader-bar span{display:block;height:100%;width:0;background:var(--accent);animation:load 1.2s ease forwards}
-@keyframes load{to{width:100%}}
-
-/* ═══ NAV ═══ */
-nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:0 clamp(1.5rem,5vw,4rem);transition:all .5s}
-nav.scrolled{background:rgba(8,8,12,.88);backdrop-filter:blur(30px) saturate(1.2);border-bottom:1px solid var(--border)}
-.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:64px}
-.nav-logo{font-family:'DM Serif Display',serif;font-weight:400;font-size:1.1rem;letter-spacing:-.02em;text-decoration:none;color:var(--text)}
-.nav-logo span{color:var(--accent)}
-.nav-links{display:flex;gap:2.5rem;list-style:none;align-items:center}
-.nav-links a{color:var(--text3);text-decoration:none;font-size:.72rem;font-weight:500;transition:color .4s;letter-spacing:.08em;text-transform:uppercase}
-.nav-links a:hover{color:var(--text)}
-.nav-status{display:flex;align-items:center;gap:7px;font-size:.7rem;color:var(--text3);padding:.35rem .9rem;border:1px solid var(--border);border-radius:100px;letter-spacing:.02em}
-.nav-status .pulse{width:5px;height:5px;background:var(--sage);border-radius:50%;box-shadow:0 0 8px rgba(124,156,128,.5)}
-.hamburger{display:none;background:none;border:none;cursor:pointer;padding:8px}
-.hamburger svg{stroke:var(--text);width:18px;height:18px}
-
-/* ═══ HERO ═══ */
-.hero{min-height:100vh;display:flex;align-items:center;position:relative;padding:0 clamp(1.5rem,5vw,4rem);overflow:hidden}
-.hero-grid{position:absolute;inset:0;overflow:hidden;opacity:.35}
-.hero-line{position:absolute;width:1px;background:linear-gradient(to bottom,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%);height:100%}
-.hero-hline{position:absolute;height:1px;background:linear-gradient(to right,transparent 0%,var(--border) 30%,var(--border) 70%,transparent 100%);width:100%}
-.hero-inner{max-width:1100px;margin:0 auto;width:100%;position:relative;z-index:2}
-.hero-intro{font-size:.68rem;font-weight:500;color:var(--text3);letter-spacing:.25em;text-transform:uppercase;margin-bottom:2.5rem;overflow:hidden}
-.hero-intro span{display:inline-block;animation:slideUp .8s ease forwards;opacity:0;animation-delay:1.4s}
-@keyframes slideUp{from{transform:translateY(100%);opacity:0}to{transform:translateY(0);opacity:1}}
-
-.hero h1{font-family:'DM Serif Display',serif;font-size:clamp(2.6rem,7vw,5.8rem);font-weight:400;line-height:.95;letter-spacing:-.03em;margin-bottom:1.5rem}
-.hero h1 .line{display:block;overflow:hidden}
-.hero h1 .line span{display:inline-block;animation:heroIn 1s cubic-bezier(.16,1,.3,1) forwards;opacity:0;transform:translateY(100%)}
-.hero h1 .line:nth-child(1) span{animation-delay:1.5s}
-.hero h1 .line:nth-child(2) span{animation-delay:1.65s}
-.hero h1 .line:nth-child(3) span{animation-delay:1.8s}
-@keyframes heroIn{to{opacity:1;transform:translateY(0)}}
-.hero h1 em{font-style:italic;color:var(--accent)}
-.hero h1 .thin{font-family:'Outfit',sans-serif;font-weight:200;font-size:.48em;color:var(--text2);letter-spacing:0}
-
-.hero-bottom{display:flex;justify-content:space-between;align-items:flex-end;margin-top:3.5rem;animation:fadeIn 1s ease forwards;animation-delay:2.2s;opacity:0}
-@keyframes fadeIn{to{opacity:1}}
-.hero-desc{max-width:420px;font-size:.85rem;color:var(--text2);line-height:1.85}
-.hero-desc strong{color:var(--text);font-weight:500}
-.hero-scroll{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text3);font-size:.6rem;letter-spacing:.2em;text-transform:uppercase}
-.hero-scroll .scroll-line{width:1px;height:48px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2.5s ease-in-out infinite}
-@keyframes scrollPulse{0%,100%{opacity:1;transform:scaleY(1)}50%{opacity:.2;transform:scaleY(.5)}}
-
-/* ═══ DIVIDER LINE ═══ */
-.section-divider{height:1px;background:linear-gradient(90deg,transparent,var(--border2) 20%,var(--border2) 80%,transparent);margin:0}
-
-/* ═══ MARQUEE ═══ */
-.marquee-section{padding:1.2rem 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;background:transparent}
-.marquee-track{display:flex;animation:marquee 40s linear infinite;width:max-content}
-.marquee-item{flex-shrink:0;padding:0 2rem;font-size:.72rem;color:var(--text3);font-weight:400;white-space:nowrap;display:flex;align-items:center;gap:.8rem;letter-spacing:.04em}
-.marquee-item .sep{color:var(--accent);font-size:.35rem;opacity:.5}
-@keyframes marquee{to{transform:translateX(-50%)}}
-
-/* ═══ SECTION UTILS ═══ */
-section{padding:clamp(5rem,12vw,9rem) clamp(1.5rem,5vw,4rem);position:relative}
-.container{max-width:1100px;margin:0 auto}
-.stag{font-size:.62rem;font-weight:600;letter-spacing:.25em;text-transform:uppercase;color:var(--accent);margin-bottom:1.2rem;display:flex;align-items:center;gap:.8rem}
-.stag::before{content:'';width:24px;height:1px;background:var(--accent)}
-.stitle{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-weight:400;letter-spacing:-.02em;line-height:1.15;margin-bottom:1rem}
-.stitle em{font-style:italic;color:var(--accent)}
-.sdesc{color:var(--text2);font-size:.88rem;max-width:480px;line-height:1.85}
-
-/* ═══ ABOUT BENTO ═══ */
-.bento{display:grid;grid-template-columns:repeat(12,1fr);gap:.8rem;margin-top:3rem}
-.bento-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;position:relative;overflow:hidden;transition:all .6s cubic-bezier(.16,1,.3,1)}
-.bento-card:hover{border-color:var(--border2);transform:translateY(-1px)}
-.bento-card::before{content:'';position:absolute;inset:0;background:radial-gradient(600px circle at var(--mx,50%) var(--my,50%),var(--accent-glow),transparent 50%);pointer-events:none}
-.b-main{grid-column:span 7;grid-row:span 2}
-.b-stat1{grid-column:span 5}
-.b-stat2{grid-column:span 5}
-.b-wide{grid-column:span 12}
-.b-third{grid-column:span 4}
-
-.b-label{font-size:.6rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--text3);margin-bottom:1.2rem}
-.b-main h3{font-family:'DM Serif Display',serif;font-size:1.5rem;font-weight:400;letter-spacing:-.01em;margin-bottom:1rem;line-height:1.25}
-.b-main h3 em{font-style:italic;color:var(--ice)}
-.b-main p{color:var(--text2);font-size:.84rem;line-height:1.85;margin-bottom:.7rem}
-
-.stat-number{font-size:clamp(2rem,3.5vw,2.6rem);font-weight:600;letter-spacing:-.04em;color:var(--accent)}
-.stat-label{color:var(--text3);font-size:.74rem;font-weight:500;margin-top:.3rem;letter-spacing:.04em}
-.stat-sub{color:var(--text3);font-size:.68rem;margin-top:.6rem;line-height:1.7}
-
-.b-third .bt-icon{width:32px;height:32px;margin-bottom:1rem;color:var(--accent);opacity:.7}
-.b-third .bt-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
-.b-third h4{font-size:.85rem;font-weight:500;margin-bottom:.5rem;letter-spacing:-.01em}
-.b-third p{color:var(--text2);font-size:.78rem;line-height:1.75}
-
-.journey-bar{display:flex;gap:2px;margin-top:1rem;height:44px;align-items:flex-end}
-.journey-seg{flex:1;border-radius:3px 3px 0 0;transition:all .4s;cursor:default;position:relative;opacity:.85}
-.journey-seg:hover{opacity:1;filter:brightness(1.2);transform:scaleY(1.08);transform-origin:bottom}
-.journey-seg .jt{position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);font-size:.58rem;white-space:nowrap;color:var(--text);background:var(--surface2);border:1px solid var(--border2);padding:.25rem .6rem;border-radius:4px;opacity:0;transition:opacity .3s;pointer-events:none;z-index:5;font-weight:400}
-.journey-seg:hover .jt{opacity:1}
-
-/* ═══ CAREER ═══ */
-.career-list{display:flex;flex-direction:column;gap:0;margin-top:3rem;border-radius:12px;overflow:hidden;border:1px solid var(--border)}
-.career-item{background:var(--surface);padding:2rem 2.5rem;display:grid;grid-template-columns:160px 1fr auto;gap:2rem;align-items:start;transition:background .4s;cursor:default;border-bottom:1px solid var(--border)}
-.career-item:last-child{border-bottom:none}
-.career-item:hover{background:var(--surface2)}
-.c-period{font-size:.65rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--text3);padding-top:.15rem}
-.c-period .c-now{color:var(--accent);display:block;margin-bottom:2px}
-.c-body h3{font-size:1rem;font-weight:500;letter-spacing:-.01em;margin-bottom:.25rem}
-.c-body .c-company{color:var(--accent);font-size:.78rem;font-weight:400;margin-bottom:.6rem;opacity:.8}
-.c-body p{color:var(--text2);font-size:.82rem;line-height:1.8;max-width:540px}
-.c-tags{display:flex;flex-wrap:wrap;gap:.25rem;justify-content:flex-end;max-width:180px}
-.c-tag{font-size:.6rem;padding:.15rem .4rem;border:1px solid var(--border);border-radius:3px;color:var(--text3);font-family:'JetBrains Mono',monospace;white-space:nowrap;transition:border-color .3s}
-.career-item:hover .c-tag{border-color:var(--border2)}
-
-/* ═══ SKILLS ═══ */
-.skills-wrapper{columns:3;column-gap:.8rem;margin-top:3rem}
-.skill-group{break-inside:avoid;background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:1.4rem;margin-bottom:.8rem;transition:border-color .4s}
-.skill-group:hover{border-color:var(--border2)}
-.skill-group h4{font-size:.6rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;color:var(--text3);margin-bottom:.9rem;display:flex;align-items:center;gap:7px}
-.sg-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
-.skill-pills{display:flex;flex-wrap:wrap;gap:.3rem}
-.sp{font-size:.72rem;padding:.28rem .58rem;border:1px solid var(--border);border-radius:4px;color:var(--text2);font-weight:400;transition:all .3s;cursor:default}
-.sp:hover{border-color:var(--accent);color:var(--text);background:var(--accent-glow)}
-
-/* ═══ PROJECTS ═══ */
-.projects-list{display:flex;flex-direction:column;gap:.8rem;margin-top:3rem}
-.proj{display:grid;grid-template-columns:1fr auto;gap:2rem;padding:1.8rem 2rem;background:var(--surface);border:1px solid var(--border);border-radius:12px;text-decoration:none;color:inherit;transition:all .5s cubic-bezier(.16,1,.3,1);align-items:center}
-.proj:hover{border-color:var(--border2);transform:translateX(3px);background:var(--surface2)}
-.proj h3{font-size:.95rem;font-weight:500;letter-spacing:-.01em;margin-bottom:.3rem;display:flex;align-items:center;gap:.5rem;flex-wrap:wrap}
-.proj-badge{font-size:.55rem;padding:.1rem .4rem;border-radius:3px;font-weight:600;letter-spacing:.06em;text-transform:uppercase}
-.proj-badge.ai{background:rgba(196,164,124,.1);border:1px solid rgba(196,164,124,.2);color:var(--accent)}
-.proj-badge.oss{background:rgba(124,156,128,.1);border:1px solid rgba(124,156,128,.2);color:var(--sage)}
-.proj-badge.app{background:rgba(136,180,204,.1);border:1px solid rgba(136,180,204,.2);color:var(--ice)}
-.proj-badge.fork{background:rgba(122,120,128,.08);border:1px solid rgba(122,120,128,.2);color:var(--text2)}
-.proj p{color:var(--text2);font-size:.8rem;line-height:1.75;max-width:580px}
-.proj-stack{display:flex;gap:.25rem;margin-top:.6rem}
-.proj-stack span{font-size:.62rem;padding:.15rem .4rem;border:1px solid var(--border);border-radius:3px;color:var(--text3);font-family:'JetBrains Mono',monospace}
-.proj-arrow{font-size:1.1rem;color:var(--text3);transition:all .4s;font-family:'DM Serif Display',serif}
-.proj:hover .proj-arrow{color:var(--accent);transform:translateX(4px)}
-
-/* ═══ EDUCATION ═══ */
-.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:.8rem;margin-top:3rem}
-.edu-card{background:var(--surface);border:1px solid var(--border);border-radius:12px;padding:2rem;transition:all .4s}
-.edu-card:hover{border-color:var(--border2)}
-.edu-card .edu-icon{width:28px;height:28px;margin-bottom:1.2rem;color:var(--accent);opacity:.6}
-.edu-card .edu-icon svg{width:100%;height:100%;stroke:currentColor;fill:none;stroke-width:1.2;stroke-linecap:round;stroke-linejoin:round}
-.edu-card h3{font-size:.92rem;font-weight:500;margin-bottom:.2rem;letter-spacing:-.01em}
-.edu-card .edu-degree{color:var(--accent);font-size:.78rem;font-weight:400;margin-bottom:.6rem;opacity:.8}
-.edu-card p{color:var(--text2);font-size:.78rem;line-height:1.75}
-.edu-card .edu-extra{margin-top:.8rem;display:flex;flex-wrap:wrap;gap:.25rem}
-.edu-card .edu-extra span{font-size:.62rem;padding:.15rem .45rem;border:1px solid var(--border);border-radius:3px;color:var(--text3)}
-
-/* ═══ CONTACT ═══ */
-.contact-layout{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:center}
-.contact-left h2{font-family:'DM Serif Display',serif;font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:400;letter-spacing:-.02em;margin-bottom:1rem}
-.contact-left h2 em{font-style:italic;color:var(--accent)}
-.contact-left>p{color:var(--text2);font-size:.85rem;line-height:1.85;margin-bottom:2rem;max-width:380px}
-.c-links{display:flex;flex-direction:column;gap:.4rem}
-.c-link{display:flex;align-items:center;gap:1rem;padding:.9rem 1.2rem;border:1px solid var(--border);border-radius:10px;text-decoration:none;color:var(--text);transition:all .4s;background:var(--surface)}
-.c-link:hover{border-color:var(--accent);transform:translateX(4px);background:var(--surface2)}
-.cl-i{width:34px;height:34px;border-radius:8px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.cl-i svg{width:16px;height:16px;stroke:var(--accent);fill:none;stroke-width:1.5;stroke-linecap:round;stroke-linejoin:round}
-.cl-t{font-size:.82rem;font-weight:500}
-.cl-s{font-size:.68rem;color:var(--text3)}
-
-.contact-right{position:relative;display:flex;justify-content:center;align-items:center;min-height:320px}
-.contact-orb{position:absolute;width:180px;height:180px;border-radius:50%;filter:blur(80px);animation:orbFloat 8s ease-in-out infinite}
-.contact-orb:nth-child(1){background:var(--accent);opacity:.04}
-.contact-orb:nth-child(2){background:var(--ice);opacity:.03;left:30%;animation-delay:3s}
-@keyframes orbFloat{0%,100%{transform:translate(0,0)}50%{transform:translate(15px,-15px)}}
-
-.contact-terminal{background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1.5rem;font-family:'JetBrains Mono',monospace;font-size:.72rem;color:var(--text2);width:100%;max-width:340px;position:relative;z-index:2}
-.ct-header{display:flex;gap:5px;margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
-.ct-dot{width:7px;height:7px;border-radius:50%}
-.ct-line{margin-bottom:.3rem;line-height:1.65}
-.ct-prompt{color:var(--accent);opacity:.7}
-.ct-val{color:var(--text)}
-.ct-cursor{display:inline-block;width:6px;height:13px;background:var(--accent);animation:blink 1.2s step-end infinite;vertical-align:middle;margin-left:2px;opacity:.7}
-@keyframes blink{50%{opacity:0}}
-
-/* ═══ FOOTER ═══ */
-footer{padding:2rem clamp(1.5rem,5vw,4rem);border-top:1px solid var(--border)}
-.footer-inner{max-width:1100px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem}
-.f-left{font-size:.68rem;color:var(--text3);letter-spacing:.02em}
-.f-right{display:flex;gap:1.8rem}
-.f-right a{color:var(--text3);text-decoration:none;font-size:.68rem;transition:color .3s;letter-spacing:.02em}
-.f-right a:hover{color:var(--accent)}
-
-/* ═══ REVEAL ═══ */
-.reveal{opacity:0;transform:translateY(20px);transition:all .9s cubic-bezier(.16,1,.3,1)}
-.reveal.vis{opacity:1;transform:translateY(0)}
-.rd1{transition-delay:.06s}.rd2{transition-delay:.12s}.rd3{transition-delay:.18s}.rd4{transition-delay:.24s}
-
-/* ═══ RESPONSIVE ═══ */
-@media(max-width:900px){
-  .hamburger{display:block}
-  .nav-links{display:none;position:absolute;top:64px;left:0;right:0;background:rgba(8,8,12,.96);backdrop-filter:blur(24px);flex-direction:column;padding:1.5rem;border-bottom:1px solid var(--border);gap:1rem}
-  .nav-links.open{display:flex}
-  .bento{display:flex;flex-direction:column}
-  .career-item{grid-template-columns:1fr;gap:.5rem;padding:1.5rem}
-  .career-item .c-tags{max-width:100%;justify-content:flex-start;margin-top:.5rem}
-  .skills-wrapper{columns:1}
-  .contact-layout{grid-template-columns:1fr}
-  .hero-bottom{flex-direction:column;gap:2rem;align-items:flex-start}
-  .hero-scroll{display:none}
-  .edu-grid{grid-template-columns:1fr}
-  .b-third{grid-column:span 12}
-  .nav-status{display:none}
-}
-@media(max-width:600px){
-  .career-item{padding:1.2rem}
-  .bento-card{padding:1.5rem}
-}
-</style>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@400;500&display=swap">
+<link rel="stylesheet" href="/assets/site.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Arjith Retna Srikanth","url":"https://arjith.github.io/","jobTitle":"Principal Engineering Manager","worksFor":{"@type":"Organization","name":"Microsoft"},"address":{"@type":"PostalAddress","addressLocality":"Hyderabad","addressCountry":"IN"},"alumniOf":"National Institute of Technology, Tiruchirappalli","sameAs":["https://github.com/arjith","https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/"]}
+</script>
 </head>
 <body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="titlebar">
+  <div class="crumbs"><a href="/">arjith</a></div>
+  <nav class="nav" aria-label="Site">
+    <a href="/projects/">projects</a>
+    <a href="/updates/">updates</a>
+    <a href="/about/">about</a>
+  </nav>
+</header>
 
-<div class="grain"></div>
-<div class="cursor-glow" id="cursorGlow"></div>
+<main id="main">
+  <div class="wrap">
+    <section class="hero" aria-labelledby="intro">
+      <div class="hero-field"></div>
+      <p class="meta"><span>Hyderabad, India</span><span>Microsoft</span></p>
+      <h1 id="intro">Arjith Retna Srikanth</h1>
+      <p class="lede">I lead an engineering team working on storage for OneDrive and SharePoint at Microsoft. Before that I wrote native C++ and Java for Office on Android, helped bring Word, Excel and PowerPoint together into one Office Mobile app, and was on the team that started Viva Learning.</p>
+      <p class="lede">Outside work I build small tools, lately around AI agents on the Linux desktop. This site keeps track of them.</p>
+      <div class="links">
+        <a class="btn" href="https://github.com/arjith">GitHub</a>
+        <a class="btn" href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a>
+        <a class="btn" href="mailto:arjithonline@gmail.com">Email</a>
+      </div>
+    </section>
 
-<!-- Loader -->
-<div class="loader" id="loader">
-  <div class="loader-bar"><span></span></div>
-</div>
+    <section aria-labelledby="work-h">
+      <div class="section-head"><h2 id="work-h">Selected projects</h2><a href="/projects/">All projects →</a></div>
+      <ul class="rows">
+        <li class="row">
+          <h3><a href="https://arjith.github.io/copilot-kubuntu-desktop-kit/">Copilot Kubuntu Desktop Kit</a></h3>
+          <span class="side"><span class="status preview">preview · v0.1.0</span></span>
+          <p>Lets Copilot CLI operate desktop apps on KDE Wayland through an opt-in, pinned backend. The first test is deliberately small: drive KCalc to 19 × 23 and check that 437 appears in the window.</p>
+          <div class="tags"><span>Python · KDE · MCP</span><a href="https://arjith.github.io/copilot-kubuntu-desktop-kit/">site</a><a href="https://github.com/arjith/copilot-kubuntu-desktop-kit">source</a><a href="https://github.com/arjith/copilot-kubuntu-desktop-kit/releases/tag/v0.1.0">release notes</a></div>
+        </li>
+        <li class="row">
+          <h3><a href="https://github.com/arjith/llm-council">LLM Council</a></h3>
+          <span class="side"><span class="status">experiment</span></span>
+          <p>Asks several models the same question, lets them critique each other and vote, and brings in a backup model when confidence is low.</p>
+          <div class="tags"><span>TypeScript · multi-agent</span><a href="https://github.com/arjith/llm-council">source</a></div>
+        </li>
+        <li class="row">
+          <h3><a href="https://github.com/arjith/vibefit">VibeFit</a></h3>
+          <span class="side"><span class="status">experiment</span></span>
+          <p>A personal fitness companion with routines, progress tracking and TensorFlow.js-based suggestions.</p>
+          <div class="tags"><span>React · Express · PostgreSQL</span><a href="https://github.com/arjith/vibefit">source</a></div>
+        </li>
+      </ul>
+    </section>
 
-<!-- Nav -->
-<nav id="nav">
-  <div class="nav-inner">
-    <a href="#" style="text-decoration:none" class="nav-logo">arjith<span>.</span></a>
-    <ul class="nav-links" id="navLinks">
-      <li><a href="#about">About</a></li>
-      <li><a href="#career">Journey</a></li>
-      <li><a href="#skills">Skills</a></li>
-      <li><a href="#projects">Projects</a></li>
-      <li><a href="#education">Education</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-status"><span class="pulse"></span> Hyderabad, India</div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <svg viewBox="0 0 20 20" fill="none"><path d="M3 5h14M3 10h14M3 15h14" stroke-width="1.5" stroke-linecap="round"></path></svg>
-    </button>
+    <section aria-labelledby="updates-h">
+      <div class="section-head"><h2 id="updates-h">Recent updates</h2><a href="/updates/">All updates →</a></div>
+      <ol class="log">
+        <li><time datetime="2026-11-21">2026-11-21</time><p>Rebuilt this site: plainer, with separate project and update pages.</p></li>
+        <li><time datetime="2026-11-15">2026-11-15</time><p>Released <a href="https://github.com/arjith/copilot-kubuntu-desktop-kit/releases/tag/v0.1.0">Copilot Kubuntu Desktop Kit v0.1.0</a> as an experimental preview. <span class="note">Compatibility reports welcome.</span></p></li>
+        <li><time datetime="2026-02-21">2026-02-21</time><p>Published VibeFit and GymVerse, two fitness app experiments.</p></li>
+      </ol>
+    </section>
+
+    <section aria-labelledby="career-h">
+      <div class="section-head"><h2 id="career-h">Work</h2><a href="/about/">More about me →</a></div>
+      <ol class="timeline">
+        <li><span class="when">Now</span><div><h3>OneDrive &amp; SharePoint Storage</h3><p>Principal Engineering Manager. Blob storage, data migration pipelines and governance for enterprise customers.</p></div></li>
+        <li><span class="when">Before</span><div><h3>Microsoft Viva Learning</h3><p>Part of the founding team, from an empty repository to a shipped product.</p></div></li>
+        <li><span class="when">Before</span><div><h3>Office Mobile</h3><p>Combining Word, Excel and PowerPoint for Android into one app; launched in China first, then worldwide.</p></div></li>
+        <li><span class="when">Start</span><div><h3>Word, Excel &amp; PowerPoint for Android</h3><p>Shared C++ and Java: rendering, file I/O, printing, licensing, boot and file-open performance.</p></div></li>
+      </ol>
+    </section>
   </div>
-</nav>
+</main>
 
-<!-- Hero -->
-<section class="hero">
-  <div class="hero-grid" id="heroGrid"></div>
-  <div class="hero-inner">
-    <div class="hero-intro"><span>Principal Engineering Manager — Microsoft</span></div>
-    <h1>
-      <span class="line"><span>From native</span></span>
-      <span class="line"><span>C++ to <em>cloud</em></span></span>
-      <span class="line"><span><em>infrastructure</em> <span class="thin">at enterprise scale</span></span></span>
-    </h1>
-    <div class="hero-bottom">
-      <p class="hero-desc">
-        Leading <strong>OneDrive & SharePoint Storage</strong> at Microsoft — blob storage, data migration pipelines, and governed systems for the largest enterprises. Previously built <strong>Viva Learning</strong> from scratch and helped unify <strong>Word, Excel & PowerPoint</strong> into a single Office Mobile app deployed worldwide.
-      </p>
-      <div class="hero-scroll">
-        <div class="scroll-line"></div>
-        Scroll
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Marquee -->
-<div class="marquee-section">
-  <div class="marquee-track">
-    <div class="marquee-item">C++ <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Java <span class="sep">&bull;</span></div>
-    <div class="marquee-item">C# <span class="sep">&bull;</span></div>
-    <div class="marquee-item">TypeScript <span class="sep">&bull;</span></div>
-    <div class="marquee-item">React <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Azure <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Blob Storage <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Android NDK <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Data Migration <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Multi-Threading <span class="sep">&bull;</span></div>
-    <div class="marquee-item">System Design <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Python <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Kubernetes <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Enterprise Security <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Performance <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Full Stack <span class="sep">&bull;</span></div>
-    <!-- duplicate for seamless loop -->
-    <div class="marquee-item">C++ <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Java <span class="sep">&bull;</span></div>
-    <div class="marquee-item">C# <span class="sep">&bull;</span></div>
-    <div class="marquee-item">TypeScript <span class="sep">&bull;</span></div>
-    <div class="marquee-item">React <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Azure <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Blob Storage <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Android NDK <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Data Migration <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Multi-Threading <span class="sep">&bull;</span></div>
-    <div class="marquee-item">System Design <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Python <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Kubernetes <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Enterprise Security <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Performance <span class="sep">&bull;</span></div>
-    <div class="marquee-item">Full Stack <span class="sep">&bull;</span></div>
-  </div>
-</div>
-
-<!-- About -->
-<section id="about">
-  <div class="container">
-    <div class="stag reveal">About</div>
-    <h2 class="stitle reveal rd1">An engineering career built on<br><em>depth</em> at every layer of the stack</h2>
-    <p class="sdesc reveal rd2">Most engineers specialize. I've shipped production code in C++, Java, C#, TypeScript, and Python — across native mobile, web, and cloud. Each layer taught me something the others couldn't.</p>
-
-    <div class="bento">
-      <!-- Main card -->
-      <div class="bento-card b-main reveal rd3">
-        <div class="b-label">My Story</div>
-        <h3>From debugging <em>native crashes</em> to designing <em>cloud pipelines</em></h3>
-        <p>I joined Microsoft as an individual contributor on the Android team for Word, Excel, and PowerPoint. I wrote shared C++ and Java code that ran across all three apps — multi-threaded rendering, File I/O, print subsystems, licensing, boot performance optimization, and file open scenarios. When something broke at the native layer, I was the one debugging JNI bridges and C++ stacktraces at the lowest levels.</p>
-        <p>Then came the ambitious project to unify all three apps into a single <strong>Office Mobile</strong> application. We launched first in China with a lean team, proved the concept, got funded, grew the team, and deployed it worldwide. I experienced firsthand what it takes to converge divergent codebases into a single product at global scale.</p>
-        <p>After that, I was part of the founding team that built <strong>Microsoft Viva Learning</strong> from an empty repo to a shipped product — using React and modern full-stack architecture to create a learning platform now used across enterprises worldwide.</p>
-        <p>Today, I lead the <strong>ODSP Storage</strong> team at Microsoft — blob storage, critical data migration pipelines, and governance systems for enterprise customers who need their data secure, compliant, and available at scale.</p>
-      </div>
-
-      <!-- Stats -->
-      <div class="bento-card b-stat1 reveal rd4" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-        <div class="stat-number">5+</div>
-        <div class="stat-label">Products Shipped</div>
-        <div class="stat-sub">Word, Excel, PPT for Android &rarr; Office Mobile &rarr; Viva Learning &rarr; ODSP Storage</div>
-      </div>
-      <div class="bento-card b-stat2 reveal" style="display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center">
-        <div class="stat-number">4</div>
-        <div class="stat-label">Languages Spoken</div>
-        <div class="stat-sub">English &middot; Hindi &middot; Tamil &middot; Sanskrit</div>
-      </div>
-
-      <!-- Philosophy cards — tightened, no emojis, SVG icons -->
-      <div class="bento-card b-third reveal rd1">
-        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-        <h4>Milliseconds Matter</h4>
-        <p>Boot times, file open latency, rendering pipelines. When your code runs on millions of devices, you learn that performance isn't an optimization — it's the product.</p>
-      </div>
-      <div class="bento-card b-third reveal rd2">
-        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"/><path d="M2 12h20"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-        <h4>Ship, Then Scale</h4>
-        <p>Office Mobile launched in China with a small team before going worldwide. The best architecture emerges from real users pushing on real systems, not from design documents.</p>
-      </div>
-      <div class="bento-card b-third reveal rd3">
-        <div class="bt-icon"><svg viewBox="0 0 24 24"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/><path d="M9 12h6"/></svg></div>
-        <h4>Depth Builds Range</h4>
-        <p>Debugging C++ crashes at the native layer gave me intuition I use designing cloud migration pipelines. Every layer of the stack teaches you something the others can't.</p>
-      </div>
-
-      <!-- Career arc bar -->
-      <div class="bento-card b-wide reveal">
-        <div class="b-label">Career Arc</div>
-        <div style="display:flex;justify-content:space-between;font-size:.65rem;color:var(--text3);margin-bottom:.4rem;flex-wrap:wrap;gap:.5rem;letter-spacing:.02em">
-          <span>Android Native &rarr; Office Mobile &rarr; Viva Learning &rarr; ODSP Storage</span>
-          <span>IC &rarr; EM &rarr; Principal EM</span>
-        </div>
-        <div class="journey-bar">
-          <div class="journey-seg" style="height:50%;background:var(--ice)"><span class="jt">Word/Excel/PPT Android &middot; C++ & Java</span></div>
-          <div class="journey-seg" style="height:55%;background:var(--ice)"><span class="jt">Performance & Reliability</span></div>
-          <div class="journey-seg" style="height:58%;background:var(--ice)"><span class="jt">Print, Licensing, File I/O</span></div>
-          <div class="journey-seg" style="height:64%;background:linear-gradient(var(--ice),var(--sage))"><span class="jt">Office Mobile &middot; Code Unification</span></div>
-          <div class="journey-seg" style="height:70%;background:var(--sage)"><span class="jt">Office Mobile &middot; China Launch</span></div>
-          <div class="journey-seg" style="height:76%;background:var(--sage)"><span class="jt">Office Mobile &middot; Worldwide Rollout</span></div>
-          <div class="journey-seg" style="height:82%;background:linear-gradient(var(--sage),var(--accent))"><span class="jt">Viva Learning &middot; 0 to 1</span></div>
-          <div class="journey-seg" style="height:86%;background:var(--accent)"><span class="jt">Viva Learning &middot; React / Full Stack</span></div>
-          <div class="journey-seg" style="height:90%;background:linear-gradient(var(--accent),var(--ice))"><span class="jt">ODSP &middot; Storage Engineering</span></div>
-          <div class="journey-seg" style="height:94%;background:var(--ice)"><span class="jt">ODSP &middot; Data Migration Pipelines</span></div>
-          <div class="journey-seg" style="height:97%;background:var(--ice)"><span class="jt">ODSP &middot; Enterprise Governance</span></div>
-          <div class="journey-seg" style="height:100%;background:linear-gradient(var(--ice),var(--accent))"><span class="jt">Present &middot; Principal EM</span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Career -->
-<section id="career" style="background:var(--surface)">
-  <div class="container">
-    <div class="stag reveal">Experience</div>
-    <h2 class="stitle reveal rd1">Four chapters at Microsoft,<br><em>one connecting thread</em>: making<br>software faster and more reliable</h2>
-
-    <div class="career-list reveal rd2">
-      <div class="career-item">
-        <div class="c-period"><span class="c-now">Current</span>Principal EM</div>
-        <div class="c-body">
-          <h3>ODSP Storage — OneDrive & SharePoint</h3>
-          <div class="c-company">Microsoft &middot; Hyderabad, India</div>
-          <p>Leading the storage engineering team responsible for blob storage at enterprise scale. Designing and building critical data migration scenarios and pipelines for secure, governed, enterprise customers. The infrastructure layer that underpins collaboration for OneDrive and SharePoint users worldwide.</p>
-        </div>
-        <div class="c-tags">
-          <span class="c-tag">blob-storage</span>
-          <span class="c-tag">data-migration</span>
-          <span class="c-tag">governance</span>
-          <span class="c-tag">compliance</span>
-          <span class="c-tag">azure</span>
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="c-period">Previous</div>
-        <div class="c-body">
-          <h3>Viva Learning — Founding Engineer</h3>
-          <div class="c-company">Microsoft Viva</div>
-          <p>Part of the founding team that created Microsoft Viva Learning from scratch. Built the product from an empty repository to a shipped learning experience platform — React-based frontend, high-performance client compute, and full-stack architecture serving enterprise organizations.</p>
-        </div>
-        <div class="c-tags">
-          <span class="c-tag">react</span>
-          <span class="c-tag">typescript</span>
-          <span class="c-tag">full-stack</span>
-          <span class="c-tag">0-to-1</span>
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="c-period">Office Mobile</div>
-        <div class="c-body">
-          <h3>Office Mobile — App Unification</h3>
-          <div class="c-company">Microsoft Office &middot; Android</div>
-          <p>Worked on the engineering effort to combine the separate codebases of Word, Excel, and PowerPoint into a single unified Office Mobile app. Launched first in China with a lean team, proved viability, then expanded with a larger team for worldwide deployment.</p>
-        </div>
-        <div class="c-tags">
-          <span class="c-tag">code-unification</span>
-          <span class="c-tag">android</span>
-          <span class="c-tag">china-launch</span>
-          <span class="c-tag">worldwide</span>
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="c-period">Foundation</div>
-        <div class="c-body">
-          <h3>Word, Excel, PowerPoint for Android</h3>
-          <div class="c-company">Microsoft Office &middot; Android</div>
-          <p>Wrote shared Java and C++ code running across Word, Excel, and PowerPoint on Android. High-performance native compute, multi-threaded rendering, File I/O, print subsystems, licensing, and performance engineering for boot time and file open scenarios.</p>
-        </div>
-        <div class="c-tags">
-          <span class="c-tag">c++</span>
-          <span class="c-tag">java</span>
-          <span class="c-tag">android-ndk</span>
-          <span class="c-tag">jni</span>
-          <span class="c-tag">threading</span>
-          <span class="c-tag">perf</span>
-          <span class="c-tag">file-io</span>
-        </div>
-      </div>
-
-      <div class="career-item">
-        <div class="c-period">Early Career</div>
-        <div class="c-body">
-          <h3>Research Intern</h3>
-          <div class="c-company">Birla Institute of Technology and Science</div>
-          <p>Research in graph theory and social network analysis. Built centrality models for identifying influential nodes in network structures, applying machine learning to graph problems.</p>
-        </div>
-        <div class="c-tags">
-          <span class="c-tag">research</span>
-          <span class="c-tag">graph-theory</span>
-          <span class="c-tag">ml</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Skills -->
-<section id="skills">
-  <div class="container">
-    <div class="stag reveal">Expertise</div>
-    <h2 class="stitle reveal rd1">Full-spectrum <em>technical depth</em></h2>
-    <p class="sdesc reveal rd2">From low-level native code to cloud infrastructure to modern web — each layer informs the next.</p>
-
-    <div class="skills-wrapper reveal rd3">
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--ice)"></span> Systems & Languages</h4>
-        <div class="skill-pills">
-          <span class="sp">C++</span><span class="sp">C#</span><span class="sp">Java</span><span class="sp">Python</span><span class="sp">TypeScript</span><span class="sp">JavaScript</span><span class="sp">SQL</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--accent)"></span> Frontend & Web</h4>
-        <div class="skill-pills">
-          <span class="sp">React</span><span class="sp">Vue.js</span><span class="sp">Angular</span><span class="sp">Next.js</span><span class="sp">Astro</span><span class="sp">Tailwind CSS</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--ice)"></span> Cloud & Infrastructure</h4>
-        <div class="skill-pills">
-          <span class="sp">Azure</span><span class="sp">Blob Storage</span><span class="sp">Docker</span><span class="sp">Kubernetes</span><span class="sp">CI/CD</span><span class="sp">Data Pipelines</span><span class="sp">Distributed Systems</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--sage)"></span> Mobile & Native</h4>
-        <div class="skill-pills">
-          <span class="sp">Android SDK</span><span class="sp">NDK / JNI</span><span class="sp">Native C++</span><span class="sp">Multi-Threading</span><span class="sp">File I/O</span><span class="sp">Performance Tuning</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--accent)"></span> AI & Emerging</h4>
-        <div class="skill-pills">
-          <span class="sp">LLMs / GPT</span><span class="sp">TensorFlow.js</span><span class="sp">AI Agents</span><span class="sp">Multi-Model Systems</span><span class="sp">Prompt Engineering</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h4><span class="sg-dot" style="background:var(--sage)"></span> Engineering Leadership</h4>
-        <div class="skill-pills">
-          <span class="sp">System Design</span><span class="sp">Team Building</span><span class="sp">Enterprise Security</span><span class="sp">Compliance</span><span class="sp">Reliability</span><span class="sp">0-to-1 Products</span><span class="sp">Performance Eng</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Projects -->
-<section id="projects" style="background:var(--surface)">
-  <div class="container">
-    <div class="stag reveal">Open Source & Side Projects</div>
-    <h2 class="stitle reveal rd1">Building <em>beyond</em> the day job</h2>
-    <p class="sdesc reveal rd2">AI experiments, fitness apps, open source contributions, and technical exploration.</p>
-
-    <div class="projects-list">
-      <a href="https://github.com/arjith/llm-council" target="_blank" class="proj reveal">
-        <div>
-          <h3>LLM Council <span class="proj-badge ai">AI</span></h3>
-          <p>A multi-model AI consensus framework exploring how multiple LLMs can debate, vote, and self-correct to converge on higher-quality outputs.</p>
-          <div class="proj-stack"><span>TypeScript</span><span>AI/ML</span><span>Multi-Agent</span></div>
-        </div>
-        <span class="proj-arrow">&rarr;</span>
-      </a>
-      <a href="https://github.com/arjith/vibefit" target="_blank" class="proj reveal rd1">
-        <div>
-          <h3>VibeFit <span class="proj-badge app">App</span></h3>
-          <p>AI-powered fitness companion with 64 exercises, personalized routines, and TensorFlow.js driving intelligent workout recommendations.</p>
-          <div class="proj-stack"><span>React</span><span>Express</span><span>PostgreSQL</span><span>TensorFlow.js</span></div>
-        </div>
-        <span class="proj-arrow">&rarr;</span>
-      </a>
-      <a href="https://github.com/arjith/gymverse" target="_blank" class="proj reveal rd2">
-        <div>
-          <h3>GymVerse <span class="proj-badge app">App</span></h3>
-          <p>Full-stack fitness application with 60+ exercises and 35+ cardio activities. Clean TypeScript architecture with routine building and tracking.</p>
-          <div class="proj-stack"><span>TypeScript</span><span>React</span><span>Express</span></div>
-        </div>
-        <span class="proj-arrow">&rarr;</span>
-      </a>
-      <a href="https://github.com/arjith/magentic-ui" target="_blank" class="proj reveal rd3">
-        <div>
-          <h3>Magentic UI <span class="proj-badge fork">Fork</span></h3>
-          <p>Exploring Microsoft Research's human-centered AI web agent prototype. Autonomous web interaction and AI-driven navigation.</p>
-          <div class="proj-stack"><span>Python</span><span>AI Agents</span><span>MSR</span></div>
-        </div>
-        <span class="proj-arrow">&rarr;</span>
-      </a>
-      <a href="https://github.com/arjith/jellyfin" target="_blank" class="proj reveal rd4">
-        <div>
-          <h3>Jellyfin <span class="proj-badge oss">OSS</span></h3>
-          <p>Contributing to the free software media system — server backend and API development in C# and .NET.</p>
-          <div class="proj-stack"><span>C#</span><span>.NET</span><span>Open Source</span></div>
-        </div>
-        <span class="proj-arrow">&rarr;</span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- Education -->
-<section id="education">
-  <div class="container">
-    <div class="stag reveal">Education</div>
-    <h2 class="stitle reveal rd1">Where it <em>started</em></h2>
-
-    <div class="edu-grid reveal rd2">
-      <div class="edu-card">
-        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div>
-        <h3>National Institute of Technology, Tiruchirappalli</h3>
-        <div class="edu-degree">B.Tech, Computer Science & Engineering</div>
-        <p>One of India's premier engineering institutions. Depth in algorithms, systems, and applied mathematics.</p>
-        <div class="edu-extra">
-          <span>Rotaract Club</span>
-          <span>Social Network Analysis Research</span>
-        </div>
-      </div>
-      <div class="edu-card">
-        <div class="edu-icon"><svg viewBox="0 0 24 24"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg></div>
-        <h3>Bala Vidya Mandir</h3>
-        <div class="edu-degree">Computer Science</div>
-        <p>Foundation in computer science and analytical thinking.</p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Contact -->
-<section id="contact" style="background:var(--surface)">
-  <div class="container">
-    <div class="contact-layout">
-      <div class="contact-left reveal">
-        <div class="stag">Contact</div>
-        <h2>Let's have a <em>conversation</em></h2>
-        <p>Engineering leadership, enterprise systems, building products from zero, or just a good technical conversation. Always happy to connect.</p>
-        <div class="c-links">
-          <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" target="_blank" class="c-link">
-            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></div>
-            <div><div class="cl-t">LinkedIn</div><div class="cl-s">Arjith Retna Srikanth</div></div>
-          </a>
-          <a href="https://github.com/arjith" target="_blank" class="c-link">
-            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></div>
-            <div><div class="cl-t">GitHub</div><div class="cl-s">github.com/arjith</div></div>
-          </a>
-          <a href="mailto:arjithonline@gmail.com" class="c-link">
-            <div class="cl-i"><svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></div>
-            <div><div class="cl-t">Email</div><div class="cl-s">arjithonline@gmail.com</div></div>
-          </a>
-        </div>
-      </div>
-      <div class="contact-right reveal rd2">
-        <div class="contact-orb"></div>
-        <div class="contact-orb"></div>
-        <div class="contact-terminal">
-          <div class="ct-header">
-            <div class="ct-dot" style="background:#ff5f57"></div>
-            <div class="ct-dot" style="background:#ffbd2e"></div>
-            <div class="ct-dot" style="background:#27c93f"></div>
-          </div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">whoami</span></div>
-          <div class="ct-line">Arjith Retna Srikanth</div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">cat role.txt</span></div>
-          <div class="ct-line">Principal Engineering Manager</div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">echo $ORG</span></div>
-          <div class="ct-line">Microsoft &mdash; ODSP Storage</div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">echo $LOCATION</span></div>
-          <div class="ct-line">Hyderabad, India</div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-val">cat languages.txt</span></div>
-          <div class="ct-line">English, Hindi, Tamil, Sanskrit</div>
-          <div class="ct-line"><span class="ct-prompt">~ $</span> <span class="ct-cursor"></span></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- Footer -->
 <footer>
-  <div class="footer-inner">
-    <div class="f-left">&copy; 2026 Arjith Retna Srikanth</div>
-    <div class="f-right">
-      <a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/" target="_blank">LinkedIn</a>
-      <a href="https://github.com/arjith" target="_blank">GitHub</a>
-      <a href="mailto:arjithonline@gmail.com">Email</a>
-    </div>
+  <div class="wrap">
+    <span>© 2026 Arjith Retna Srikanth</span>
+    <nav aria-label="Elsewhere"><a href="https://github.com/arjith">GitHub</a><a href="https://www.linkedin.com/in/arjith-retna-srikanth-1b8b9967/">LinkedIn</a><a href="mailto:arjithonline@gmail.com">Email</a><a href="/feed.xml">Feed</a></nav>
   </div>
 </footer>
-
-<script>
-// Loader
-window.addEventListener('load',()=>setTimeout(()=>document.getElementById('loader').classList.add('done'),1400));
-
-// Nav
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('scrolled',scrollY>60),{passive:true});
-
-// Hamburger
-document.getElementById('hamburger').addEventListener('click',()=>document.getElementById('navLinks').classList.toggle('open'));
-document.querySelectorAll('#navLinks a').forEach(a=>a.addEventListener('click',()=>document.getElementById('navLinks').classList.remove('open')));
-
-// Cursor glow
-const glow=document.getElementById('cursorGlow');
-let gx=0,gy=0,cx=0,cy=0;
-document.addEventListener('mousemove',e=>{gx=e.clientX;gy=e.clientY});
-(function loop(){cx+=(gx-cx)*.06;cy+=(gy-cy)*.06;glow.style.left=cx+'px';glow.style.top=cy+'px';requestAnimationFrame(loop)})();
-
-// Bento hover radial
-document.querySelectorAll('.bento-card').forEach(c=>{
-  c.addEventListener('mousemove',e=>{
-    const r=c.getBoundingClientRect();
-    c.style.setProperty('--mx',(e.clientX-r.left)+'px');
-    c.style.setProperty('--my',(e.clientY-r.top)+'px');
-  });
-});
-
-// Hero grid lines
-(function(){
-  const g=document.getElementById('heroGrid');
-  // Vertical lines
-  for(let i=0;i<8;i++){
-    const l=document.createElement('div');
-    l.className='hero-line';
-    l.style.left=(8+i*12)+'%';
-    l.style.opacity=(.08+Math.random()*.12).toFixed(2);
-    g.appendChild(l);
-  }
-  // Horizontal lines
-  for(let i=0;i<5;i++){
-    const l=document.createElement('div');
-    l.className='hero-hline';
-    l.style.top=(15+i*18)+'%';
-    l.style.opacity=(.05+Math.random()*.08).toFixed(2);
-    g.appendChild(l);
-  }
-})();
-
-// Scroll reveal
-const obs=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('vis');obs.unobserve(e.target)}});
-},{threshold:.08,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
-
-// Smooth scroll
-document.querySelectorAll('a[href^="#"]').forEach(a=>{
-  a.addEventListener('click',e=>{
-    e.preventDefault();
-    const t=document.querySelector(a.getAttribute('href'));
-    if(t){window.scrollTo({top:t.offsetTop-80,behavior:'smooth'})}
-  });
-});
-</script>
-
+<script src="/assets/field.js" defer></script>
 </body>
 </html>
